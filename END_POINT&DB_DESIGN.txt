@@ -1,0 +1,55 @@
+----------------------MONGODB SCHEMA STRUCTURES-----------------------
+USERS :
+    _id : ObjectId()
+    email : String,
+    password : String
+    name : String
+    rollNumber : String
+    role : (student/Faculty)
+    Course : String
+    Year: Number
+    isAdmin: Bool
+    department: String
+    subject : String
+    subcriptionDetails: Object
+
+SUBJECTS :
+    _id : ObjectId()
+    subjectName: String
+    classCount: Number
+
+ATTENDANCE :
+    _id : ObjectId()
+    date : Date()
+    rollNumber : String
+    isPresent: true/flase
+    subject : String
+
+--------------------------FRONTEND PAGES AND FEATURES--------------------------
+PAGES:
+    -LOGIN PAGE
+    -Register PAGE
+    -Student DashBoard (View Only)
+    -Faculty DashBoard (Editable DashBoard)
+    -Admin DashBoard (Editable DashBoard)
+
+--------------------------BACKEND END POINTS FOR COMMUNICATION--------------------
+MICROSERVIES:
+    Users:
+        @POST -/api/users/login  (LOGIN END POINT)                           -
+        @POST -/api/Users/register (REISTER END POINT)                       -
+    Attendance:
+        @POST -/api/attendance/starter                                      (Authenticted and isFaculty) -
+        @POST -/api/attendance/add                                          (Authenticted and isFaculty) -
+        @GET -/api/attendance/subject/:subId                                (Authenticted and isFaculty) -
+        @GET -/api/attendance/student/:studId                               (Authenticted and isStudent) -
+        @DELETE -/api/attendance/delete/:rollNumber                         (Authenticted and isFaculty)
+    Subjects:
+        @UPDATE -/api/subject/classes-taken                                 (Authenticted and isFaculty)
+        @POST -/api/subjects/add                                            (Authenticted and isAdmin)
+        @DELETE -/api/subjects/delete                                       (Authenticted and isAdmin)
+    Notification:
+        @POST -/api/notifications/send
+
+
+

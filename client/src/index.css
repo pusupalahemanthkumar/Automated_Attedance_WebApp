@@ -1,0 +1,321 @@
+/* CSS Reset */
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+/* Main Styling Here */
+body{
+    line-height: 1.5;
+    background: #1C2733;
+    color:#fff;
+    font-family: sans-serif;
+}
+/* Navbar */
+header{
+    display: flex;
+    background: #262F38;
+    justify-content: space-between;
+    padding: 1.5rem 2rem;
+}
+header .logo a{
+    color: #fff !important;
+}
+.nav-links a,
+.mobile-nav-links a{
+    margin-right: 0.75rem;
+    text-decoration: none;
+    color: #FFF;
+    transition:  0.5s ease-in-out;
+    font-size: 1.2rem;
+}
+.nav-links a:hover,
+.mobile-nav-links a:hover{
+    color: #47A1EB;
+}
+.menu-bar {
+    display: none;
+}
+.mobile-nav-links {
+    display: none;
+    background: #262F38;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+/* Filter Date Form And Filter Subject Form */
+.container-date-filter-form{
+    max-width: 1000px;
+    margin: 4rem auto;
+    background: #262F38;
+    padding: 2rem 1rem;
+    border-radius: 10px;
+}
+.date-filter-form{
+    display: flex;
+    justify-content: space-evenly;
+}
+.form-date-group input{
+    background: #1C2733;
+    color:#47A1EB;
+    outline: none;
+    border:none;
+    border-radius: 8px;
+    width: 20rem;
+    padding: 0.75rem 1rem;
+}
+.form-date-group input::placeholder{
+    color:#47A1EB;
+}
+.form-date-btn{
+    background: #47A1EB;
+    color: #fff;
+    padding: 0.5rem 2rem;
+    border-radius: 10px;
+}
+/* Subject Attendance List Table */
+.container-subject-attendance-list{
+    max-width: 1000px;
+    margin: 2rem auto;
+    background: #262F38;
+    padding: 2rem 1rem;
+    border-radius: 10px;
+}
+.subject-attendance-list-table{
+    width:100%;
+    /* border: 2px solid #47A1EB; */
+}
+.subject-attendance-list-table thead{
+    background: #1C2733;
+}
+.subject-attendance-list-table th{
+    text-align: center;
+    padding: 0.75rem;
+}
+
+.subject-attendance-list-table td
+{
+    text-align: center;
+    /* border-bottom: 1px solid #47A1EB; */
+    background: #1C2733;
+    padding: 0.75rem;
+    margin: 0.5rem;
+}
+/* Login And Register Form */
+
+a {
+    text-decoration: none;
+  }
+
+  #container {
+    margin: 5rem auto;
+    max-width: 700px;
+    padding: 20px;
+  }
+
+  .form-wrap {
+    background: #262F38;
+    padding: 15px 25px;
+    color: #fff;
+  }
+
+  .form-wrap h3,
+  .form-wrap p {
+    text-align: center;
+  }
+
+  .form-wrap .form-group {
+    margin-top: 15px;
+  }
+
+  .form-wrap .form-group label {
+    display: block;
+    color: #47A1EB;
+    font-size: 1rem;
+  }
+
+  .form-wrap .form-group input {
+    width: 100%;
+    padding: 10px;
+    background: #1C2733;
+    border: #262F38 1px solid;
+    outline: none;
+    color:#fff;
+    border-radius: 5px;
+  }
+
+  .form-wrap button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    background: #47A1EB;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .form-wrap button:hover {
+    background: #37a08e
+  }
+
+  .form-wrap .bottom-text {
+    font-size: 13px;
+    margin-top: 20px;
+  }
+
+  footer {
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  footer a {
+    color:#47A1EB;
+    font-size: 1rem;
+  }
+/* Home Screen Page  */
+.container-home-page{
+    max-width: 700px;
+    margin: 3rem auto;
+    padding: 1rem 2rem;
+    background: #262F38;
+    border-radius: 15px;
+    text-align: center;
+}
+.container-home-page .home-page-img{
+    height:450px;
+    margin-top: -4rem;
+}
+.container-home-page .home-page-img img{
+    width:100%;
+    height:100%;
+}
+.home-page-content p{
+    margin: 1rem 0;
+    font-size: 1.2rem;
+}
+/* Take Attendance Page */
+.container-take-attendance{
+    max-width: 1000px;
+    margin:4rem auto;
+    background: #262F38;
+    padding: 1.5rem 1rem;
+    border-radius: 10px;
+    text-align: center;
+}
+.container-take-attendance input{
+    padding: 0.75rem 1rem;
+    width:200px;
+}
+.container-recognition-faces{
+    max-width: 900px;
+    margin:4rem auto;
+    background: #262F38;
+    padding: 1.5rem 1rem;
+    border-radius: 10px;
+    text-align: center;
+}
+.list-recognition-output{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+}
+.list-recognition-output li{
+    margin: 0.75rem 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+    font-size: 1rem;
+    border: 1px solid #47A1EB;
+}
+.take-attendance-btn{
+    padding: 0.75rem 1rem;
+    margin: 1rem 0;
+    outline: none;
+    border:none;
+    border-radius: 10px;
+    background: #47A1EB;
+    color: #fff;
+}
+/* Utility Classes */
+.open-menu {
+    display: flex !important;
+}
+.primary-color{
+    color:#47A1EB;
+}
+/* Mobile View */
+@media(max-width:768px){
+    /* Navbar */
+    header {
+        padding: 1rem 0.5rem;
+    }
+    header .logo{
+        font-size: 0.9rem;
+    }
+    .nav-links {
+        display: none;
+    }
+    .menu-bar {
+        display: block;
+    }
+    .mobile-nav-links a{
+        font-size: 0.8rem;
+        margin:0.5rem 0;
+    }
+    /* Filter Form */
+    .container-date-filter-form{
+        width: 90%;
+    }
+    .date-filter-form{
+        flex-direction: column;
+
+    }
+    .form-date-group input{
+        width:100%;
+        margin-bottom: 1rem;
+    }
+    /* Attendance List Table */
+    .container-subject-attendance-list{
+        width: 90%;
+    }
+    .subject-attendance-list-table td,
+    .subject-attendance-list-table th{
+        font-size: 0.8rem;
+
+    }
+    /* Login And Register Form */
+    .form-wrap .form-group label{
+        font-size: 0.9rem;
+    }
+    footer a {
+        color:#47A1EB;
+        font-size: 0.9rem;
+      }
+    /* Home Screen Page */
+    .container-home-page{
+        max-width: 90%;
+    }
+    .container-home-page h1{
+        font-size: 1.2rem;
+    }
+    .container-home-page .home-page-img{
+        height:400px;
+    }
+    .home-page-content p{
+        font-size: 0.9rem;
+    }
+    /* Take Attendance Form */
+    .container-take-attendance,
+    .container-recognition-faces{
+        width: 90%;
+    }
+    .list-recognition-output li{
+        font-size: 0.8rem;
+        margin: 0.5rem;
+        padding: 0.5rem;
+    }
+
+}
