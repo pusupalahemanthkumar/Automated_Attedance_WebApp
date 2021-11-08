@@ -25,6 +25,29 @@ export const loadLabeledImages = () => {
             return new faceapi.LabeledFaceDescriptors(label, descriptions)
         })
     )
+}
 
+export const faceRecogintionOutput = async (files,faceMatcher) => {
+    const output = [];
+    for (let x = 0; x < files.length; x++) {
+
+        const image = await faceapi.bufferToImage(files[x]);
+        const displaySize = { width: image.width, height: image.height };
+
+        const detections = await faceapi.detectAllFaces(image)
+            .withFaceLandmarks()
+            .withFaceDescriptors()
+
+        const resizedDetections = faceapi.resizeResults(detections, displaySize);
+        const results = resizedDetections.map(d => faceMatcher.findBestMatch(d.descriptor))
+
+        results.forEach((result, i) => {
+            console.log(result._label)
+            if (result._label !== "unknown") {
+                output.push(result._label)
+            }
+        });
+    }
+    return output;
 }
 

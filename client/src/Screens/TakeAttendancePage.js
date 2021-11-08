@@ -7,21 +7,20 @@ import { Modal } from "react-responsive-modal";
 
 import Navbar from '../components/Navbar/Navbar';
 import Spinner from "../components/Spinner/Spinner"
-import { loadLabeledImages, loadFaceApiModels } from "../utils/FaceApiUtils"
+import { loadLabeledImages, loadFaceApiModels, faceRecogintionOutput } from "../utils/FaceApiUtils"
+import RecognitionOutputDisplayer from '../components/RecognitionOutputDisplayer/RecognitionOutputDisplayer';
+import AttendanceAddModal from '../components/AttendanceAddModal/AttendanceAddModal';
 
+const formatYmd = date => date.toISOString().slice(0, 10);
 
 const TakeAttendancePage = () => {
-    const output = []
-
     const [open, setOpen] = useState(false);
     const onOpenModal = () => setOpen(true);
     const onCloseModal = () => setOpen(false);
 
     const [recognitionOutput, setRecognitionOutput] = useState([]);
     const [status, setStatus] = useState("Initial");
-
-    const [subject,setSubject]=useState("");
-
+    const [subject, setSubject] = useState("");
 
     useEffect(() => {
         loadFaceApiModels();
@@ -29,42 +28,20 @@ const TakeAttendancePage = () => {
 
     const studentImageChangeHandler = async (e) => {
         setStatus("Processing");
-        console.log(e.target.files.length);
-        console.log("--------Started Face Recognition Process !----------")
+        console.log("--------Started Face Recognition Process !----------");
         const labeledFaceDescriptors = await loadLabeledImages()
-        const faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, 0.6)
-        console.log("----------Trained Model Loaded------------")
-        for (let i = 0; i < e.target.files.length; i++) {
-            const image = await faceapi.bufferToImage(e.target.files[i]);
-
-            const displaySize = { width: image.width, height: image.height };
-
-            const detections = await faceapi.detectAllFaces(image)
-                .withFaceLandmarks()
-                .withFaceDescriptors()
-
-            console.log(detections.length)
-
-            const resizedDetections = faceapi.resizeResults(detections, displaySize);
-            const results = resizedDetections.map(d => faceMatcher.findBestMatch(d.descriptor))
-
-            results.forEach((result, i) => {
-                console.log(result._label)
-                if (result._label !== "unknown") {
-                    output.push(result._label)
-                }
-            });
-
-        }
-
-        setRecognitionOutput(output);
+        const faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, 0.6);
+        console.log("----------Trained Model Loaded------------");
+        const data = await faceRecogintionOutput(e.target.files, faceMatcher)
+        setRecognitionOutput(data);
         setStatus("Fetched");
     }
-    const addAttendanceHandler=async (e)=>{
+    const addAttendanceHandler = async (e) => {
         e.preventDefault();
-        const query={
-            subject:subject,
-            rollNumbers:["Test","Sushant"]
+        const query = {
+            subject: subject,
+            rollNumbers: ["Test", "Sushant"],
+            date: formatYmd(new Date())
         }
         console.log(query)
         const { data } = await axios.post(
@@ -72,8 +49,6 @@ const TakeAttendancePage = () => {
             query,
         );
         console.log(data);
-
-        
     }
     let UI;
     if (status === "Initial") {
@@ -83,20 +58,10 @@ const TakeAttendancePage = () => {
     }
     else {
         UI = (
-            <>
-                <ul className="list-recognition-output">
-                    {
-                        recognitionOutput.map((p, idx) => {
-                            return (
-                                <li key={p + idx.toString()}>
-                                    {p}
-                                </li>
-                            )
-                        })
-                    }
-                </ul>
-                <button className="take-attendance-btn" onClick={onOpenModal}>Proceed</button>
-            </>
+            <RecognitionOutputDisplayer
+                recognitionOutput={recognitionOutput}
+                onOpenModal={onOpenModal}
+            />
         )
     }
     return (
@@ -109,43 +74,10 @@ const TakeAttendancePage = () => {
                 {UI}
             </div>
             <Modal open={open} onClose={onCloseModal} center>
-                <div id="container-attendance-form">
-                    <div className="form-wrap">
-                        <form  onSubmit={addAttendanceHandler}>
-                            <div className="form-group">
-                                <label htmlFor="subject">Subject</label>
-                                <input
-                                    type="text"
-                                    name="subject"
-                                    id="Subject"
-                                    required
-                                    onChange={(e)=>setSubject(e.target.value)}
-                                />
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="course">Course</label>
-                                <input
-                                    type="text"
-                                    name="Course"
-                                    id="course"
-                                    required
-                                />
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="year">B.tech Year</label>
-                                <input
-                                    type="text"
-                                    name="year"
-                                    id="year"
-                                    required
-                                />
-                            </div>
-                            <button type="submit" className="btn">Add Attendance</button>
-                        </form>
-                    </div>
-                </div>
-
-
+                <AttendanceAddModal
+                    addAttendanceHandler={addAttendanceHandler}
+                    setSubject={setSubject}
+                />
             </Modal>
 
         </>

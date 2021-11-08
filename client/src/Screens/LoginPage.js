@@ -31,7 +31,6 @@ const LoginPage = ({ history }) => {
                 <div className="form-wrap">
                     <h3>Login Portal</h3>
                     {error && <p className="error-message">{error}</p>}
-                    {UI}
                     {
                         loading ?
                             <Spinner /> :

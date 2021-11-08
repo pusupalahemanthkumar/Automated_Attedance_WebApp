@@ -5,6 +5,7 @@ import { register } from "../actions/userActions";
 import Spinner from "../components/Spinner/Spinner";
 
 import Navbar from '../components/Navbar/Navbar';
+import RegisterForm from '../components/RegisterForm/RegisterForm';
 
 const RegisterPage = ({ history }) => {
     const [name, setName] = useState("");
@@ -41,74 +42,6 @@ const RegisterPage = ({ history }) => {
         };
         dispatch(register(data));
     }
-
-    let UI;
-    if (loading) {
-        UI = <Spinner />
-    } else {
-        UI = (
-            <form onSubmit={submitHandler}>
-                <div className="form-group">
-                    <label htmlFor="name">Name</label>
-                    <input
-                        type="text"
-                        name="name"
-                        id="name"
-                        onChange={(e) => setName(e.target.value)}
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="rollNumber">RollNumber</label>
-                    <input
-                        type="text"
-                        name="rollNumber"
-                        id="rollNumber"
-                        onChange={(e) => setRollNumber(e.target.value)}
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="email">Email</label>
-                    <input
-                        type="email"
-                        name="email"
-                        id="email"
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="password">Password</label>
-                    <input
-                        type="password"
-                        name="password"
-                        id="password"
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="year">B.tech Year</label>
-                    <input
-                        type="text"
-                        name="year"
-                        id="year"
-                        onChange={(e) => setYear(e.target.value)}
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="course">B.tech course</label>
-                    <input
-                        type="text"
-                        name="course"
-                        id="course"
-                        onChange={(e) => setCourse(e.target.value)}
-                    />
-                </div>
-                <button className="btn">Register</button>
-            </form>
-
-        );
-    }
-
-
     return (
         <>
             <Navbar />
@@ -116,7 +49,21 @@ const RegisterPage = ({ history }) => {
                 <div className="form-wrap">
                     <h3>Register Portal</h3>
                     {error && <p className="error-message">{error}</p>}
-                    {UI}
+                    {loading ? <Spinner />
+                        :
+                        (
+                            <RegisterForm
+                                submitHandler={submitHandler}
+                                setName={setName}
+                                setRollNumber={setRollNumber}
+                                setEmail={setEmail}
+                                setPassword={setPassword}
+                                setYear={setYear}
+                                setCourse={setCourse}
+                            />
+
+                        )
+                    }
 
                 </div>
                 <footer>

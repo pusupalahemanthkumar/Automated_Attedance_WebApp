@@ -26,26 +26,13 @@ const AttendanceViewPage = ({ history }) => {
         if (userInfo && userInfo.role === "faculty") {
             setSubject(userInfo.subject)
         }
-        if (userInfo.role ==="student") {
+        if (userInfo.role === "student") {
             dispatch(getAttendance({ date: formatYmd(new Date()), rollNumber: userInfo.rollNumber }))
         } else {
             dispatch(getAttendance({ date: formatYmd(new Date()), subject: userInfo.subject }))
         }
-    }, [userInfo,history,dispatch])
+    }, [userInfo, history, dispatch])
 
-
-    let UI = null;
-    if (loading && !error) {
-        UI = <Spinner />;
-
-    } else if (error) {
-        UI = <h1 className="text-center primary-color">{error}</h1>;
-    }
-    else {
-        UI = (
-            <AttendanceListTable data={AttendanceList} />
-        )
-    }
     const submitHandler = (e) => {
         e.preventDefault();
         let query;
@@ -71,16 +58,26 @@ const AttendanceViewPage = ({ history }) => {
 
         }
         dispatch(getAttendance(query));
-        // console.log(query);
         console.log(AttendanceListStore);
 
+    }
+    let UI = null;
+    if (loading && !error) {
+        UI = <Spinner />;
+
+    } else if (error) {
+        UI = <h1 className="text-center primary-color">{error}</h1>;
+    }
+    else {
+        UI = (
+            <AttendanceListTable data={AttendanceList} />
+        )
     }
     return (
         <>
             <Navbar />
             <div className="container-date-filter-form">
                 <form onSubmit={submitHandler} className="date-filter-form">
-
                     <div className="form-date-group">
                         <input
                             type="date"
@@ -97,10 +94,8 @@ const AttendanceViewPage = ({ history }) => {
                             />
                         </div>) : null
                     }
-
                     <button className="form-date-btn">Fetch</button>
                 </form>
-
             </div>
             {UI}
         </>
