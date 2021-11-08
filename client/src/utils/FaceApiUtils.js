@@ -11,7 +11,7 @@ export const loadFaceApiModels = () => {
 }
 
 export const loadLabeledImages = () => {
-    const labels = ['Hemanth Kumar', 'Neetha Reddy']
+    const labels = ['18H61A05N5', '18H61A05N6']
     return Promise.all(
         labels.map(async label => {
             const descriptions = []
