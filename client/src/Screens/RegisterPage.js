@@ -112,7 +112,7 @@ const RegisterPage = ({ history }) => {
     return (
         <>
             <Navbar />
-            <div id="container">
+            <div id="container" className="container-register">
                 <div className="form-wrap">
                     <h3>Register Portal</h3>
                     {error && <p className="error-message">{error}</p>}

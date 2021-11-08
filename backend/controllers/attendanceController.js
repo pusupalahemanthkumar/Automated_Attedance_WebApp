@@ -55,6 +55,40 @@ const attendanceStarter = asyncHandler(
     }
 )
 
+const attendanceStarterMultipleAdder = asyncHandler(
+    async (req, res, next) => {
+        const studentList = await User.find({ role: "student" }, { _id: 0, rollNumber: 1 });
+        const formatYmd = date => date.toISOString().slice(0, 10);
+
+        studentList.forEach(async (stud) => {
+            await Attendance.create({
+                subject: req.body.subject,
+                date: formatYmd(new Date()),
+                isPresent: false,
+                rollNumber: stud.rollNumber
+            });
+
+        });
+
+        req.body.rollNumbers.forEach(async (r)=>{
+            const attendance = await Attendance.updateOne({
+                subject: subject,
+                date: date,
+                isPresent: false,
+                rollNumber: r
+            }, {
+                isPresent: true,
+            });
+
+        })
+
+        res.json({
+            message: "Added Attendance Sucessfully!"
+        });
+
+    }
+
+);
 const addAttendance = asyncHandler(
     async (req, res, next) => {
         const { rollNumber, subject, date, isPresent } = req.body;
@@ -89,5 +123,6 @@ export {
     getStudentAttendance,
     getSubjectAttendance,
     attendanceStarter,
-    getAttendance
+    getAttendance,
+    attendanceStarterMultipleAdder
 }

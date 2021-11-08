@@ -29,7 +29,7 @@ const Navbar = () => {
         <>
             <header>
                 <div className="logo">
-                    <h2><Link to="/"><span className="primary-color">Attendance</span>Software</Link> </h2>
+                    <h2><Link to="/"><span className="primary-color">AWD</span>Software</Link> </h2>
                 </div>
                 <div className="nav-links">
                     <Link to="/">Home</Link>

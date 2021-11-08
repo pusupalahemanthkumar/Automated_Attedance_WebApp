@@ -16,7 +16,7 @@ export const loadLabeledImages = () => {
         labels.map(async label => {
             const descriptions = []
             // i<=2 because of only 2 images 
-            for (let i = 1; i <= 10; i++) {
+            for (let i = 1; i <= 2; i++) {
                 const img = await faceapi.fetchImage(`https://raw.githubusercontent.com/pusupalahemanthkumar/Automated_Attedance_WebApp/main/Storage/${label}/${i}.jpg`)
                 const detections = await faceapi.detectSingleFace(img).withFaceLandmarks().withFaceDescriptor()
                 descriptions.push(detections.descriptor)
