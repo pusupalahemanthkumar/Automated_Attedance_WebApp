@@ -1,6 +1,6 @@
 import React from 'react'
 
-const AttendanceAddModal = ({addAttendanceHandler,setSubject}) => {
+const AttendanceAddModal = ({addAttendanceHandler,setSubject,rollNumbers}) => {
     return (
         <div id="container-attendance-form">
             <div className="form-wrap">
@@ -32,6 +32,12 @@ const AttendanceAddModal = ({addAttendanceHandler,setSubject}) => {
                             id="year"
                             required
                         />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="year">Roll Numbers :</label>
+                        <textarea>
+                           {rollNumbers.join(", ")}
+                        </textarea>
                     </div>
                     <button type="submit" className="btn">Add Attendance</button>
                 </form>

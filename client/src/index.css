@@ -147,7 +147,8 @@ a{
     font-size: 1rem;
 }
 
-.form-wrap .form-group input {
+.form-wrap .form-group input ,
+.form-group textarea{
     width: 100%;
     padding: 10px;
     background: #1C2733;

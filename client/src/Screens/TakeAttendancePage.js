@@ -14,6 +14,7 @@ import AttendanceAddModal from '../components/AttendanceAddModal/AttendanceAddMo
 const formatYmd = date => date.toISOString().slice(0, 10);
 
 const TakeAttendancePage = () => {
+    let rollNumbers=[];
     const [open, setOpen] = useState(false);
     const onOpenModal = () => setOpen(true);
     const onCloseModal = () => setOpen(false);
@@ -32,15 +33,16 @@ const TakeAttendancePage = () => {
         const labeledFaceDescriptors = await loadLabeledImages()
         const faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, 0.6);
         console.log("----------Trained Model Loaded------------");
-        const data = await faceRecogintionOutput(e.target.files, faceMatcher)
-        setRecognitionOutput(data);
+
+        rollNumbers= await faceRecogintionOutput(e.target.files, faceMatcher)
+        await setRecognitionOutput(rollNumbers);
         setStatus("Fetched");
     }
     const addAttendanceHandler = async (e) => {
         e.preventDefault();
         const query = {
             subject: subject,
-            rollNumbers: ["Test", "Sushant"],
+            rollNumbers: [...recognitionOutput],
             date: formatYmd(new Date())
         }
         console.log(query)
@@ -68,7 +70,7 @@ const TakeAttendancePage = () => {
         <>
             <Navbar />
             <div className="container-take-attendance">
-                <input type="file" name="studentImages" onChange={studentImageChangeHandler} multiple class="custom-file-input" />
+                <input type="file" name="studentImages" onChange={studentImageChangeHandler} multiple className="custom-file-input" />
             </div>
             <div className="container-recognition-faces">
                 {UI}
@@ -77,6 +79,7 @@ const TakeAttendancePage = () => {
                 <AttendanceAddModal
                     addAttendanceHandler={addAttendanceHandler}
                     setSubject={setSubject}
+                    rollNumbers={recognitionOutput}
                 />
             </Modal>
 

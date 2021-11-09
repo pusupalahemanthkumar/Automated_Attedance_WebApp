@@ -56,13 +56,30 @@ const attendanceStarter = asyncHandler(
 )
 
 const attendanceStarterMultipleAdder = asyncHandler(
-    async (req,res,next)=>{
-        console.log(req.body);
-        res.jons({
-            message:"testing"
+    async (req, res, next) => {
+        const { date, subject, rollNumbers } = req.body;
+
+        const studentList = await User.find({ role: "student" }, { _id: 0, rollNumber: 1 });
+        const queryInsertion = [];
+        for (let i = 0; i < studentList.length; i++) {
+            queryInsertion.push({
+                rollNumber: studentList[i].rollNumber,
+                subject: subject,
+                date: date,
+                isPresent: false,
+            })
+        }
+        await Attendance.insertMany(queryInsertion);
+        await Attendance.updateMany({ date: date, subject: subject, isPresent: false, rollNumber: { $in: rollNumbers } }, { isPresent: true })
+
+        // for (let i = 0; i < rollNumbers.length; i++) {
+        //     const updateId = await Attendance.updateOne({ rollNumber: rollNumbers[i], date: date, subject: subject, isPresent: false }, { isPresent: true });
+        //     console.log(updateId);
+        // }
+        res.json({
+            message: "Updated Sucessfully !"
         })
     }
-
 );
 const addAttendance = asyncHandler(
     async (req, res, next) => {
