@@ -19,6 +19,17 @@
   <!-- Style Sheets -->
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" media="screen and (max-width: 768px)" href="/css/mobile.css">
+  <script>
+    // Checking If browser Supports Service Workers and Registering
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker
+        .register("/serviceworker.js")
+        .then(() => {
+          console.log("Service Worker Registered");
+        })
+        .catch((err) => { });
+    }
+  </script>
 
   <title>Attendance System</title>
 </head>
