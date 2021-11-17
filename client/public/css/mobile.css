@@ -1,0 +1,114 @@
+/* Mobile Styling Here */
+@media(max-width:768px){
+    /* NavBar Styling Here */
+    .navbar{
+        padding: 1rem;
+    }
+    .navbar .menu-bar{
+        display: block;
+    }
+    .navbar .nav-links{
+        display: none;
+    }
+    /* Showcase Styling Here */
+    .showcase-container{
+        flex-direction: column;
+    }
+    .showcase-content-container{
+        padding:0 1rem;
+    }
+    .showcase-content-container h1{
+        font-size: 1.5rem;
+    }
+    .showcase-content-container p{
+        font-size: 0.9rem;
+    }
+    .showcase-content-container .showcase-btn{
+        font-size: 0.9rem;
+    }
+    /* Services Styling Here */
+    .services-container{
+        margin-top: 1rem;
+    }
+    .services-container .services-title{
+        font-size: 1.5rem;
+    }
+    .services-list-container{
+        padding: 3rem 1rem;
+        flex-direction: column;
+    }
+    .services-list-container .service-item{
+        margin:1rem;
+    }
+    /* Footer Styling Here */
+    .footer-container{
+        height: 60vh;
+        flex-direction: column;
+        padding: 5rem 1rem;
+        align-items: center;
+        justify-content: center;
+    }
+    .footer-container .footer-title{
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+    }
+    .footer-container .footer-content-1 p,
+    .footer-container .footer-content-2 p{
+        font-size: 1rem;
+        padding: 0;
+    }
+    /* Login Register Form  styling Here*/
+    .login-register-main-container{
+        padding :0rem;
+        padding-top: 4rem;
+    }
+    .login-register-content{
+        width: 90%;
+        height: fit-content;
+        flex-direction: column;
+        margin-bottom: 3rem !important;
+    }
+    .login-register-content .login-register-content-1{
+        padding: 5rem 2rem;
+    }
+    .login-register-form{
+        padding: 4rem 1rem;
+    }
+    /* Dashboard Styling Here */
+    .dashboard-main-container{
+        padding: 3rem 0rem;
+    }
+    .dashboard-title{
+        font-size: 1.5rem;
+        margin: 2rem 0;
+    }
+    .dashboard-summary-container{
+        width:100%;
+    }
+    .dashboard-summary-item{
+        width: 35%;
+        margin: 0.5rem;
+    }
+    .dashboard-summary-item h1{
+        font-size: 1rem;
+    }
+    .dashboard-summary-item span{
+        font-size: 1.5rem;
+    }
+    .dashboard-attendance-title-filter-container h1{
+        font-size: 1rem;
+    }
+    .dashboard-attendance-logs-container{
+        margin-top: 3rem;
+        padding: 0 1rem;
+    }
+    /* Apply Filters */
+    .react-responsive-modal-modal {
+        width: 90%;
+    }
+    /* Message */
+    .message{
+        padding: 4rem 1rem;
+        
+    }
+}

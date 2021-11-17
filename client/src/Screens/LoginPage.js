@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { login } from "../actions/userActions";
 import Spinner from "../components/Spinner/Spinner";
 import Navbar from "../components/Navbar/Navbar";
+import Footer from "../components/Footer/Footer"
 import LoginForm from '../components/LoginForm/LoginForm';
 
 const LoginPage = ({ history }) => {
@@ -27,27 +28,34 @@ const LoginPage = ({ history }) => {
     return (
         <>
             <Navbar />
-            <div id="container">
-                <div className="form-wrap">
-                    <h3>Login Portal</h3>
-                    {error && <p className="error-message">{error}</p>}
-                    {
-                        loading ?
-                            <Spinner /> :
-                            (
-                                <LoginForm
-                                    submitHandler={submitHandler}
-                                    setEmail={setEmail}
-                                    setPassword={setPassword}
-                                />
+            <div className="login-register-main-container">
+                <div className="login-register-content login-specific">
+                    <div className="login-register-content-1">
+                        <h1>Login</h1>
+                        <p>Lorem ipsum dolor sit amet.</p>
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. <Link to="/register">Iusto, repellendus!</Link></p>
 
-                            )
-                    }
+                    </div>
+                    <div className="login-register-content-2">
+                        {error && <p className="error-message">{error}</p>}
+                        {
+                            loading ?
+                                <Spinner /> :
+                                (
+                                    <LoginForm
+                                        submitHandler={submitHandler}
+                                        setEmail={setEmail}
+                                        setPassword={setPassword}
+                                    />
+
+                                )
+                        }
+                       
+                    </div>
                 </div>
-                <footer>
-                    <p>Don't have an account? <Link to="/register">Register Here</Link></p>
-                </footer>
             </div>
+            <Footer />
+
         </>
     )
 }

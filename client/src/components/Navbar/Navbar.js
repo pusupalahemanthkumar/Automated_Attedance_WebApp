@@ -14,7 +14,7 @@ const Navbar = () => {
     );
     const mobileMenuHandler = () => {
         if (mobileViewNavClass === "mobile-nav-links") {
-            setMobileViewNavClass("mobile-nav-links open-menu")
+            setMobileViewNavClass("mobile-nav-links display-menu")
         } else {
             setMobileViewNavClass("mobile-nav-links")
         }
@@ -27,51 +27,66 @@ const Navbar = () => {
 
     return (
         <>
-            <header>
+            <nav className="navbar">
                 <div className="logo">
-                    <h2><Link to="/"><span className="primary-color">AWD</span>Software</Link> </h2>
+                    <h1><span className="primary-color-1"> <i className="fas fa-rocket secondary-color-2"></i>Attendance App</span>
+                    </h1>
                 </div>
-                <div className="nav-links">
-                    <Link to="/">Home</Link>
+                <ul className="nav-links">
+                    <li><Link to="/">About</Link></li>
                     {
-                        userInfo && (<Link to="/attendance">Attendance</Link>)
+                        (userInfo && userInfo.role == "faculty") ? (<li><Link to="/take-attendance">Take Attendance</Link></li>) : null
                     }
+                    {
+                        userInfo && (
+                            <>
+                                <li><Link to="/attendance">Dashboard</Link></li>
+                                <li><Link to="" onClick={logoutHandler}>logout</Link></li>
+                            </>
+
+                        )
+                    }
+
+
                     {
                         !userInfo && (
                             <>
-                                <Link to="/login">Login</Link>
-                                <Link to="/register">Register</Link>
+                                <li><Link to="/login">Login</Link></li>
+                                <li><Link to="/register">Register</Link></li>
                             </>
                         )
                     }
-                    {
-                        userInfo && (<Link to="" onClick={logoutHandler}>Logout</Link>)
-                    }
 
-                </div>
-                <i className="fas fa-2x fa-bars menu-bar" onClick={mobileMenuHandler} ></i>
-            </header>
-            <div className={mobileViewNavClass} >
-                <Link to="/">Home</Link>
+                </ul>
+                <i className="fas fa-bars menu-bar" onClick={mobileMenuHandler}></i>
+            </nav>
+            <ul className={mobileViewNavClass}>
+                <li><Link to="/">About</Link></li>
                 {
-                    userInfo && (<Link to="/attendance">Attendance</Link>)
+                    (userInfo && userInfo.role == "faculty") ? (<li><Link to="/take-attendance">Take Attendance</Link></li>) : null
                 }
+                {
+                    userInfo && (
+                        <>
+                            <li><Link to="/attendance">Dashboard</Link></li>
+                            <li><Link to="" onClick={logoutHandler}>logout</Link></li>
+                        </>
+
+                    )
+                }
+
+
                 {
                     !userInfo && (
                         <>
-                            <Link to="/login">Login</Link>
-                            <Link to="/register">Register</Link>
+                            <li><Link to="/login">Login</Link></li>
+                            <li><Link to="/register">Register</Link></li>
                         </>
                     )
                 }
-                {
-                    userInfo && (<Link to="" onClick={logoutHandler}>Logout</Link>)
-                }
 
-
-            </div>
+            </ul>
         </>
-
     )
 }
 

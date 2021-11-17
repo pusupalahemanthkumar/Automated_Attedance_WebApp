@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 
 const attendanceSchema = mongoose.Schema({
     date: {
-        type: String,
+        type: Date,
         required: true,
     },
     rollNumber: {

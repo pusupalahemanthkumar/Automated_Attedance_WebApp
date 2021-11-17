@@ -1,63 +1,34 @@
 import React from 'react'
 
-const RegisterForm = ({submitHandler,setName,setRollNumber,setEmail,setPassword,setYear,setCourse}) => {
+const RegisterForm = ({ submitHandler, setName, setRollNumber, setEmail, setPassword, setYear, setCourse }) => {
     return (
-        <form onSubmit={submitHandler}>
+
+        <form className="login-register-form" onSubmit={submitHandler}>
             <div className="form-group">
-                <label htmlFor="name">Name</label>
-                <input
-                    type="text"
-                    name="name"
-                    id="name"
-                    onChange={(e) => setName(e.target.value)}
-                />
+                <label for="name">Name</label>
+                <input type="text" name="name" onChange={(e) => setName(e.target.value)} required placeholder="enter name" />
             </div>
             <div className="form-group">
-                <label htmlFor="rollNumber">RollNumber</label>
-                <input
-                    type="text"
-                    name="rollNumber"
-                    id="rollNumber"
-                    onChange={(e) => setRollNumber(e.target.value)}
-                />
+                <label for="rollNumber">rollNumber</label>
+                <input type="text" name="rollNumber" onChange={(e) => setRollNumber(e.target.value)} required placeholder="enter rollnumber" />
             </div>
             <div className="form-group">
-                <label htmlFor="email">Email</label>
-                <input
-                    type="email"
-                    name="email"
-                    id="email"
-                    onChange={(e) => setEmail(e.target.value)}
-                />
+                <label for="course">Course</label>
+                <input type="text" name="course" onChange={(e) => setCourse(e.target.value)} required placeholder="enter course (like CSE/ECE)" />
             </div>
             <div className="form-group">
-                <label htmlFor="password">Password</label>
-                <input
-                    type="password"
-                    name="password"
-                    id="password"
-                    onChange={(e) => setPassword(e.target.value)}
-                />
+                <label for="year">Year</label>
+                <input type="number" name="year" onChange={(e) => setYear(e.target.value)} required placeholder="enter b.tech year (like 1/2/3/4)" min="1" max="4" />
             </div>
             <div className="form-group">
-                <label htmlFor="year">B.tech Year</label>
-                <input
-                    type="text"
-                    name="year"
-                    id="year"
-                    onChange={(e) => setYear(e.target.value)}
-                />
+                <label for="email">Email</label>
+                <input type="email" name="email" onChange={(e) => setEmail(e.target.value)} required placeholder="test@cvsr.ac.in" />
             </div>
             <div className="form-group">
-                <label htmlFor="course">B.tech course</label>
-                <input
-                    type="text"
-                    name="course"
-                    id="course"
-                    onChange={(e) => setCourse(e.target.value)}
-                />
+                <label for="password">Password</label>
+                <input type="password" name="password" onChange={(e) => setPassword(e.target.value)} required placeholder="enter password" />
             </div>
-            <button className="btn">Register</button>
+            <button className="login-register-btn">Register</button>
         </form>
     )
 }

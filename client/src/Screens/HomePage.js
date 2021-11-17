@@ -1,23 +1,43 @@
 import React from 'react';
+import Footer from '../components/Footer/Footer';
 import Navbar from '../components/Navbar/Navbar';
 
 const HomePage = () => {
     return (
         <>
             <Navbar />
-            <div className="container-home-page">
-                <h1><span className="primary-color">Automated</span> Attendance Portal</h1>
-                <div className="home-page-img">
-                    <img src="https://www.mentorrbuddy.com/images/cs-it.png" alt="Home" />
+            <div className="showcase-container">
+                <div className="showcase-image-container">
+                    <img src="/images/home_bg.png" alt="showcase image photo" />
                 </div>
-                <div className="home-page-content">
-                    <p>
-                        Automated Attendance system deals with taking attendance without human interference.
-                        In this project, an automated attendance marking and management system is proposed by
-                        making use of face detection and recognition algorithms. 
-                    </p>
+                <div className="showcase-content-container">
+                    <h1>For every student,every classNameroom . Real results.</h1>
+                    <p>We’re a nonprofit with the mission to provide a free, world-className education for anyone, anywhere.</p>
+                    <a href="#" className="showcase-btn">Learn More</a>
                 </div>
             </div>
+            <div className="services-container">
+                <h1 className="services-title">How Attendance App works</h1>
+                <div className="services-list-container">
+                    <div className="service-item">
+                        <i className="fas fa-5x fa-mobile"></i>
+                        <h3>Lorem ipsum dolor sit amet.</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui, earum?</p>
+                    </div>
+                    <div className="service-item">
+                        <i className="fas fa-5x fa-stopwatch"></i>
+                        <h3>Lorem ipsum dolor sit amet.</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui, earum?</p>
+                    </div>
+                    <div className="service-item">
+                        <i className="fas fa-5x fa-chart-bar"></i>
+                        <h3>Lorem ipsum dolor sit amet.</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui, earum?</p>
+                    </div>
+                </div>
+            </div>
+            <Footer />
+
         </>
     )
 }

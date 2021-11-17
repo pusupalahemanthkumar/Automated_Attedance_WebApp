@@ -1,0 +1,401 @@
+/* CSS RESET Here */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* Main Styling Here */
+body{
+    line-height: 1.5;
+    font-family: 'Lato', sans-serif;
+}
+/* Utility Classes Here */
+.primary-color{
+    color:#1865F3;
+}
+.primary-color-1{
+    color:#0F2C65;
+}
+.primary-color-2{
+    color:#1865F3;
+}
+.secondary-color-1{
+    color: #14BF96;
+}
+.text-center{
+    align-items: center;
+}
+.primary-bg-1{
+    background-color: #0F2C65;
+}
+.primary-bg-2{
+    background-color: #1865F3;
+}
+.display-menu{
+    display: flex !important;
+}
+.hide-menu{
+    display: none !important;
+}
+
+/* NavBar Styling Here */
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    border-bottom: 2px solid #ddd;
+}
+.navbar .nav-links{
+    display: flex;
+    list-style: none;
+}
+.navbar .logo{
+    font-size: 1rem;
+}
+.navbar .nav-links li a{
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    color: #1865F3;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: 0.5 all ease-in-out;
+}
+.navbar .nav-links li a:hover{
+    color: #0F2C65;
+}
+.navbar .menu-bar{
+    display: none;
+}
+.mobile-nav-links{
+    list-style: none;
+    display: none;
+    background: #f4f4f4;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+}
+.mobile-nav-links li a{
+    text-decoration: none;
+    padding: 1rem;
+    color: #1865F3;
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: 0.5 all ease-in-out;
+}
+.mobile-nav-links li a:hover{
+    color: #0F2C65;
+}
+/* Showcase Style Here */
+.showcase-container{
+    display: flex;
+}
+.showcase-container .showcase-image-container img{
+    width:100%;
+    height: 100%;
+}
+.showcase-content-container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+/* .showcase-image-container{
+    flex: 2;
+}
+.showcase-content-container{
+    flex: 1;
+} */
+.showcase-content-container h1{
+    font-size: 2.5rem;
+    color: #21242C;
+}
+.showcase-content-container p{
+    margin: 0.75rem 0;
+    color:#34373E;
+    font-size: 1rem;
+}
+.showcase-content-container .showcase-btn{
+    text-decoration: none;
+    background: #1865F2;
+    color: #fff;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    width: 8rem;
+    text-align: center;
+}
+/* Services Container */
+.services-container{
+    background: #F7F5F4;
+    padding: 3rem 0;
+}
+.services-container .services-title{
+    text-align: center;
+    padding-top: 4rem;
+    color: #21242C;
+    font-size: 2.5rem;
+}
+.services-list-container{
+    padding: 5rem 4rem;
+    display: flex;
+    justify-content: space-evenly;
+}
+.services-list-container .service-item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.services-list-container .service-item{
+    margin: 0 1rem;
+}
+.service-item i{
+    color:#14BF96;
+    margin-bottom: 0.5rem;
+}
+.service-item h3{
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+.service-item p{
+    text-align: center;
+}
+/* Footer Container */
+.footer-container{
+    background: #0A2A66;
+    color: #fff;
+    padding: 6rem 4rem;
+    display: flex;
+    justify-content: space-evenly;
+    border-bottom: 1px solid #82889C;
+
+}
+.footer-container .footer-title{
+    font-size: 2rem;
+    margin-right: 1.5rem;
+}
+.footer-container .footer-content-1 p,
+.footer-container .footer-content-2 p
+{
+    margin: 1rem 0;
+    color:#82889C;
+    padding: 0 1rem;
+    font-size: 1.2rem;
+}
+.footer-copyright{
+    padding: 1rem;
+    text-align: center;
+    background: #0A2A66;
+    color:#82889C;
+}
+/* Login And Register Styling Here */
+.login-register-main-container{
+    /* height: 100vh; */
+    padding: 3rem;
+    /* margin-bottom: 4rem; */
+    background: url('https://ak.picdn.net/shutterstock/videos/1012438505/thumb/12.jpg') no-repeat center center/cover;
+    background: url('https://img.freepik.com/free-vector/blue-sky-with-white-clouds-background-cartoon-flat-style-design_302982-813.jpg?size=626&ext=jpg') no-repeat center center/cover;
+    /* background-image: linear-gradient(#0A74E3,#00ADCE,#1CCECE); */
+}
+.login-register-content{
+    max-width: 1000px;
+    margin: auto;
+    /* height: 80vh; */
+    display: flex;
+}
+.login-specific{
+    height: 80vh;
+}
+.login-register-content .login-register-content-1{
+    background-color: #0F2C65 !important;
+    flex:1;
+    color:#fff;
+    display: flex;
+    flex-direction: column;
+    padding: 5rem 4rem;
+}
+.login-register-content .login-register-content-1 h1{
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+.login-register-content .login-register-content-1 p{
+  margin-bottom: 1rem;
+}
+.login-register-content-1 a{
+    color: #fff;
+}
+.login-register-content-1 .images-upload-container{
+    margin: 2rem auto;
+}
+.login-register-content-1 .images-upload-container input{
+    background: #1865F2;
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+}
+
+.login-register-content .login-register-content-2{
+    background-color: #fff !important;
+    flex:1;
+    border: 2px solid #1865F2;
+}
+.login-register-form{
+    display: flex;
+    justify-content: center;
+    padding: 5rem 2rem;
+    flex-direction: column;
+}
+.login-register-form .form-group{
+    margin-bottom: 1rem;
+}
+.login-register-form .form-group label{
+    display: block;
+    margin-bottom: 0.5rem;
+    color:#34373E;
+}
+.login-register-form .form-group input,
+.login-register-form .form-group textarea
+{
+    width: 100%;
+    padding: 0.75rem 1rem;
+    outline: none;
+    border: 1px solid #82889C;
+    border-radius: 10px;
+}
+.login-register-btn{
+    background: #1865F3;
+    padding:0.75rem 1rem;
+    margin-top:0.5rem;
+    border:none;
+    outline: none;
+    color:#fff;
+    border-radius: 10px;
+}
+/* Dashboard Styling Here */
+.dashboard-main-container{
+    padding: 3rem 4rem;
+}
+.dashboard-title{
+    text-align: center;
+    font-size: 2.5rem;
+    color:#0A2A66;
+    margin: 2rem 0;
+}
+.dashboard-summary-container{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    align-content: space-around;
+    flex-wrap: wrap;
+}
+.dashboard-summary-item{
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    width: 15rem;
+    margin: 1rem;
+    padding-bottom: 1rem;
+}
+.dashboard-summary-item h1{
+    font-size: 1.2rem;
+    padding: 0.7rem 1.5rem;
+    color: #fff;
+    text-align: center;
+    background-image: linear-gradient(#0A74E3,#00ADCE,#1CCECE);
+    /* background-color: #0F2C65; */
+    border-radius: 10px;
+}
+.dashboard-summary-item span{
+    font-size: 3.5rem;
+    color:#82889C;
+    padding: 0.5rem 1rem;
+    display: block;
+    text-align: center;
+    align-self: center;
+}
+.dashboard-summary-item p{
+    color: #0F2C65;
+    text-align: center;
+}
+.dashboard-attendance-logs-container{
+    margin-top: 3rem;
+    padding: 0 2rem;
+}
+.dashboard-attendance-title-filter-container{
+    display: flex;
+    justify-content: space-between;
+}
+.dashboard-attendance-title-filter-container h1{
+    font-size: 1.5rem;
+    color:#34373E;
+}
+.dashboard-attendance-title-filter-container button{
+    padding: 0.5rem 1.5rem;
+    background-color: #1865F2;
+    background-color: #00ADCE;
+    border-radius: 10px;
+    color:#fff;
+    outline: none;
+    border:none;
+}
+.dashboard-attendance-logs-table-container{
+    margin-top: 3rem;
+}
+.attendance-table{
+    width: 100%;   
+}
+.attendance-table th{
+    /* background-color: #0F2C65; */
+    background-image: linear-gradient(#0A74E3,#00ADCE,#1CCECE);
+    color: #fff;
+}
+.attendance-table th,td{
+    text-align: center;
+    padding : 0.75rem;
+}
+.attendance-table td{
+    border-bottom: 1px solid #82889C;
+}
+.download-report-container{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin: 3rem 0;
+}
+.download-report-container button{
+    padding: 0.75rem 1.5rem;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    background-color: #00ADCE; 
+    color: #fff;
+}
+/* Apply Filters Form */
+.react-responsive-modal-modal {
+    padding: 0 !important;
+    border-radius: 10px;
+    width: 50%;
+}
+.apply-filters-container{
+    width:100%;
+}
+/* Message */
+.message{
+    padding: 2rem;
+    color:#00ADCE;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.message p{
+    font-size: 1.2rem;
+    font-weight: bold;
+
+}
+/* Error Message */
+.error-message{
+    margin-top: 2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color:red;
+    text-align: center;
+}
+.status{
+    color:#00ADCE !important;
+}

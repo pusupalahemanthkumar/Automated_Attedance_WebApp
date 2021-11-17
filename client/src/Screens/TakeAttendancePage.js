@@ -1,29 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import * as faceapi from '@vladmandic/face-api';
 import axios from "axios";
-
-import "react-responsive-modal/styles.css";
-import { Modal } from "react-responsive-modal";
+import { useSelector } from "react-redux";
 
 import Navbar from '../components/Navbar/Navbar';
+import Footer from "../components/Footer/Footer"
 import Spinner from "../components/Spinner/Spinner"
 import { loadLabeledImages, loadFaceApiModels, faceRecogintionOutput } from "../utils/FaceApiUtils"
-import RecognitionOutputDisplayer from '../components/RecognitionOutputDisplayer/RecognitionOutputDisplayer';
-import AttendanceAddModal from '../components/AttendanceAddModal/AttendanceAddModal';
 
 const formatYmd = date => date.toISOString().slice(0, 10);
 
 const TakeAttendancePage = () => {
-    let rollNumbers=[];
-    const [open, setOpen] = useState(false);
-    const onOpenModal = () => setOpen(true);
-    const onCloseModal = () => setOpen(false);
-
+    let rollNumbers = [];
     const [recognitionOutput, setRecognitionOutput] = useState([]);
     const [status, setStatus] = useState("Initial");
     const [subject, setSubject] = useState("");
+    const [added,setAdded]=useState(false);
+
+
+
+    const userLogin = useSelector((state) => state.userLogin);
+    const { userInfo } = userLogin;
 
     useEffect(() => {
+        if (userInfo) {
+            setSubject(userInfo.subject);
+        }
         loadFaceApiModels();
     }, [])
 
@@ -34,7 +36,7 @@ const TakeAttendancePage = () => {
         const faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, 0.6);
         console.log("----------Trained Model Loaded------------");
 
-        rollNumbers= await faceRecogintionOutput(e.target.files, faceMatcher)
+        rollNumbers = await faceRecogintionOutput(e.target.files, faceMatcher)
         await setRecognitionOutput(rollNumbers);
         setStatus("Fetched");
     }
@@ -42,7 +44,7 @@ const TakeAttendancePage = () => {
         e.preventDefault();
         const query = {
             subject: subject,
-            rollNumbers: [...recognitionOutput],
+            rollNumbers: [...new Set(recognitionOutput)],
             date: formatYmd(new Date())
         }
         console.log(query)
@@ -50,39 +52,73 @@ const TakeAttendancePage = () => {
             "http://localhost:5000/api/attendance/add-multiple",
             query,
         );
+        setAdded(true);
         console.log(data);
     }
     let UI;
     if (status === "Initial") {
-        UI = <p>Please Take And Upload Image</p>
+        UI = (
+            <>
+                <div className="message">
+                    <p >Please Take And Upload Image</p>
+                </div>
+            </>
+        )
+
+
     } else if (status === "Processing") {
         UI = <Spinner />
     }
     else {
         UI = (
-            <RecognitionOutputDisplayer
-                recognitionOutput={recognitionOutput}
-                onOpenModal={onOpenModal}
-            />
+            <form class="login-register-form" onSubmit={addAttendanceHandler}>
+                <div class="form-group">
+                    <label for="Subject">Subject</label>
+                    <input type="text" name="name" onChange={setSubject} value={subject} required placeholder="enter subject (like DS/IS/MS/IOT)" />
+                </div>
+                <div class="form-group">
+                    <label for="course">Course</label>
+                    <input type="text" name="course" required placeholder="enter course (like CSE/ECE)" />
+                </div>
+                <div class="form-group">
+                    <label for="year">Year</label>
+                    <input type="number" name="year" required placeholder="enter b.tech year (like 1/2/3/4)" min="1" max="4" />
+                </div>
+                <div class="form-group">
+                    <label for="hour">Hour</label>
+                    <input type="number" name="hour" required placeholder="enter hour (like 1/2/3/4/..)" />
+                </div>
+                <div class="form-group">
+                    <label for="rollNumbers">RollNumbers Present</label>
+                    <textarea name="rollNumbers" rows="5" required placeholder="just upload images, this field filled will be filled automatically." >
+                        {[...new Set(recognitionOutput)].join(",")}
+                    </textarea>
+                </div>
+                <button class="login-register-btn">Save Attendance</button>
+            </form>
         )
     }
     return (
         <>
             <Navbar />
-            <div className="container-take-attendance">
-                <input type="file" name="studentImages" onChange={studentImageChangeHandler} multiple className="custom-file-input" />
-            </div>
-            <div className="container-recognition-faces">
-                {UI}
-            </div>
-            <Modal open={open} onClose={onCloseModal} center>
-                <AttendanceAddModal
-                    addAttendanceHandler={addAttendanceHandler}
-                    setSubject={setSubject}
-                    rollNumbers={recognitionOutput}
-                />
-            </Modal>
+            <div class="login-register-main-container">
+                <div class="login-register-content">
+                    <div class="login-register-content-1">
+                        <h1>Take Attendance</h1>
+                        <p>Lorem ipsum dolor sit amet.</p>
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. <a href="#">Iusto, repellendus!</a></p>
+                        <div class="images-upload-container">
+                            <input type="file" multiple onChange={studentImageChangeHandler} />
+                        </div>
 
+                    </div>
+                    <div class="login-register-content-2">
+                        {added && <p className="error-message status">{`Marked Attendance Sucessfully !`}</p>}
+                        {UI}
+                    </div>
+                </div>
+            </div>
+            <Footer />
         </>
 
     )

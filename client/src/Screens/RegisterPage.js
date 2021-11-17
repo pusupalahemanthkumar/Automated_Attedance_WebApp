@@ -5,6 +5,7 @@ import { register } from "../actions/userActions";
 import Spinner from "../components/Spinner/Spinner";
 
 import Navbar from '../components/Navbar/Navbar';
+import Footer from "../components/Footer/Footer"
 import RegisterForm from '../components/RegisterForm/RegisterForm';
 
 const RegisterPage = ({ history }) => {
@@ -45,31 +46,37 @@ const RegisterPage = ({ history }) => {
     return (
         <>
             <Navbar />
-            <div id="container" className="container-register">
-                <div className="form-wrap">
-                    <h3>Register Portal</h3>
-                    {error && <p className="error-message">{error}</p>}
-                    {loading ? <Spinner />
-                        :
-                        (
-                            <RegisterForm
-                                submitHandler={submitHandler}
-                                setName={setName}
-                                setRollNumber={setRollNumber}
-                                setEmail={setEmail}
-                                setPassword={setPassword}
-                                setYear={setYear}
-                                setCourse={setCourse}
-                            />
+            <div className="login-register-main-container">
+                <div className="login-register-content">
+                    <div className="login-register-content-1">
+                        <h1>Register</h1>
+                        <p>Lorem ipsum dolor sit amet.</p>
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. <Link to="/login">Iusto, repellendus!</Link></p>
 
-                        )
-                    }
+                    </div>
+                    <div className="login-register-content-2">
+                        {error && <p className="error-message">{error}</p>}
+                        {
+                            loading ?
+                                <Spinner /> :
+                                (
+                                    <RegisterForm
+                                        submitHandler={submitHandler}
+                                        setName={setName}
+                                        setRollNumber={setRollNumber}
+                                        setEmail={setEmail}
+                                        setPassword={setPassword}
+                                        setYear={setYear}
+                                        setCourse={setCourse}
+                                    />
 
+                                )
+                        }
+
+                    </div>
                 </div>
-                <footer>
-                    <p>Already have an account? <Link to="/login">Login Here</Link></p>
-                </footer>
             </div>
+            <Footer />
         </>
     )
 }
