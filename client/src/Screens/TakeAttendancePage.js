@@ -10,11 +10,12 @@ import { loadLabeledImages, loadFaceApiModels, faceRecogintionOutput } from "../
 
 const formatYmd = date => date.toISOString().slice(0, 10);
 
-const TakeAttendancePage = () => {
+const TakeAttendancePage = ({history}) => {
     let rollNumbers = [];
     const [recognitionOutput, setRecognitionOutput] = useState([]);
     const [status, setStatus] = useState("Initial");
     const [subject, setSubject] = useState("");
+    const [hour, sethour] = useState("");
     const [added,setAdded]=useState(false);
 
 
@@ -23,6 +24,9 @@ const TakeAttendancePage = () => {
     const { userInfo } = userLogin;
 
     useEffect(() => {
+        if(userInfo && userInfo.role!=="faculty"){
+            history.replace("/");
+        }
         if (userInfo) {
             setSubject(userInfo.subject);
         }
@@ -45,12 +49,20 @@ const TakeAttendancePage = () => {
         const query = {
             subject: subject,
             rollNumbers: [...new Set(recognitionOutput)],
-            date: formatYmd(new Date())
+            date: formatYmd(new Date()),
+            hour:hour,
         }
+        const config = {
+            headers: {
+              "Content-Type": "application/json",
+              "authorization":`Bearer ${userInfo.token}`
+            },
+          };
         console.log(query)
         const { data } = await axios.post(
             "http://localhost:5000/api/attendance/add-multiple",
             query,
+            config
         );
         setAdded(true);
         console.log(data);
@@ -74,7 +86,7 @@ const TakeAttendancePage = () => {
             <form class="login-register-form" onSubmit={addAttendanceHandler}>
                 <div class="form-group">
                     <label for="Subject">Subject</label>
-                    <input type="text" name="name" onChange={setSubject} value={subject} required placeholder="enter subject (like DS/IS/MS/IOT)" />
+                    <input type="text" name="name" onChange={(e)=>setSubject(e.target.value)} value={subject} required placeholder="enter subject (like DS/IS/MS/IOT)" />
                 </div>
                 <div class="form-group">
                     <label for="course">Course</label>
@@ -86,7 +98,7 @@ const TakeAttendancePage = () => {
                 </div>
                 <div class="form-group">
                     <label for="hour">Hour</label>
-                    <input type="number" name="hour" required placeholder="enter hour (like 1/2/3/4/..)" />
+                    <input type="number" name="hour" onChange={(e)=>sethour(e.target.value)} required placeholder="enter hour (like 1/2/3/4/..)" />
                 </div>
                 <div class="form-group">
                     <label for="rollNumbers">RollNumbers Present</label>

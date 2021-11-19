@@ -18,6 +18,9 @@ const attendanceSchema = mongoose.Schema({
     subject: {
         type: String,
         required: true,
+    },
+    hour: {
+        type: String,
     }
 
 

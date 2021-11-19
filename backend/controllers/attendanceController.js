@@ -12,6 +12,60 @@ const getAttendance = asyncHandler(
     }
 )
 
+const attendanceStarterMultipleAdder = asyncHandler(
+    async (req, res, next) => {
+        const { date, subject, rollNumbers,hour } = req.body;
+
+        const studentList = await User.find({ role: "student" }, { _id: 0, rollNumber: 1 });
+        const queryInsertion = [];
+        for (let i = 0; i < studentList.length; i++) {
+            queryInsertion.push({
+                rollNumber: studentList[i].rollNumber,
+                subject: subject,
+                date: date,
+                hour:hour,
+                isPresent: false,
+            })
+        }
+        await Attendance.insertMany(queryInsertion);
+        await Attendance.updateMany({ date: date, hour:hour, subject: subject, isPresent: false, rollNumber: { $in: rollNumbers } }, { isPresent: true })
+
+        res.json({
+            message: "Updated Sucessfully !"
+        })
+    }
+);
+const addAttendance = asyncHandler(
+    async (req, res, next) => {
+        const { rollNumber, subject, date, isPresent,hour } = req.body;
+        const data = await Attendance.find({ rollNumber: rollNumber, hour:hour ,subject: subject, date: date, isPresent: isPresent });
+
+        if (data.length == 0) {
+            const attendance = await Attendance.updateOne({
+                subject: subject,
+                date: date,
+                isPresent: false,
+                hour:hour,
+                rollNumber: rollNumber
+            }, {
+                isPresent: isPresent,
+            });
+            if (attendance) {
+                res.json({
+                    message: "Added Attendance Sucessfully!"
+                });
+            }
+        } else {
+            res.json({
+                message: "Already Added Attendance Sucessfully!"
+            });
+
+        }
+
+    }
+)
+
+// Can be Removed
 const getSubjectAttendance = asyncHandler(
     async (req, res, next) => {
         const subId = req.params.subId;
@@ -51,61 +105,6 @@ const attendanceStarter = asyncHandler(
             message: "Successfully Initiated Attendance Process !",
             studentList: studentList,
         })
-
-    }
-)
-
-const attendanceStarterMultipleAdder = asyncHandler(
-    async (req, res, next) => {
-        const { date, subject, rollNumbers } = req.body;
-
-        const studentList = await User.find({ role: "student" }, { _id: 0, rollNumber: 1 });
-        const queryInsertion = [];
-        for (let i = 0; i < studentList.length; i++) {
-            queryInsertion.push({
-                rollNumber: studentList[i].rollNumber,
-                subject: subject,
-                date: date,
-                isPresent: false,
-            })
-        }
-        await Attendance.insertMany(queryInsertion);
-        await Attendance.updateMany({ date: date, subject: subject, isPresent: false, rollNumber: { $in: rollNumbers } }, { isPresent: true })
-
-        // for (let i = 0; i < rollNumbers.length; i++) {
-        //     const updateId = await Attendance.updateOne({ rollNumber: rollNumbers[i], date: date, subject: subject, isPresent: false }, { isPresent: true });
-        //     console.log(updateId);
-        // }
-        res.json({
-            message: "Updated Sucessfully !"
-        })
-    }
-);
-const addAttendance = asyncHandler(
-    async (req, res, next) => {
-        const { rollNumber, subject, date, isPresent } = req.body;
-        const data = await Attendance.find({ rollNumber: rollNumber, subject: subject, date: date, isPresent: isPresent });
-
-        if (data.length == 0) {
-            const attendance = await Attendance.updateOne({
-                subject: subject,
-                date: date,
-                isPresent: false,
-                rollNumber: rollNumber
-            }, {
-                isPresent: isPresent,
-            });
-            if (attendance) {
-                res.json({
-                    message: "Added Attendance Sucessfully!"
-                });
-            }
-        } else {
-            res.json({
-                message: "Already Added Attendance Sucessfully!"
-            });
-
-        }
 
     }
 )

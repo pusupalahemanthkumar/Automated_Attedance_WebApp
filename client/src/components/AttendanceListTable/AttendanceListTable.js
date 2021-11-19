@@ -10,6 +10,7 @@ const AttendanceListTable = ({ data }) => {
                         <th>Date</th>
                         <th>RollNumber </th>
                         <th>Subject</th>
+                        {/* <th>hour</th> */}
                         <th>Status</th>
                     </tr>
                 </thead>
@@ -21,6 +22,7 @@ const AttendanceListTable = ({ data }) => {
                                     <td>{formatYmd(new Date(row.date))}</td>
                                     <td>{row.rollNumber}</td>
                                     <td>{row.subject}</td>
+                                    {/* <td>{row.hour}</td> */}
                                     <td>{row.isPresent ? "Present " : "Absent "} <i className="fas fa-pen-square primary-color"></i></td>
                                 </tr>
                             )

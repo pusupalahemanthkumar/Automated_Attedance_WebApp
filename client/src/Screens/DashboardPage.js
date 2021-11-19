@@ -128,13 +128,23 @@ const DashboardPage = ({ history }) => {
                     <form className="login-register-form" onSubmit={submitHandler}>
                         <div className="form-group">
                             <label htmlFor="subject">Subject</label>
-                            <input
-                                type="text"
-                                name="subject"
-                                placeholder="enter subject name (like DS/IOT/DSA/MS)"
-                                onChange={(e) => setSubject(e.target.value)}
-                                value={subject}
-                            />
+                            {
+                                userInfo && userInfo.role === "faculty" ? (<input
+                                    type="text"
+                                    name="subject"
+                                    placeholder="enter subject name (like DS/IOT/DSA/MS)"
+                                    onChange={(e) => setSubject(e.target.value)}
+                                    value={subject}
+                                    readOnly
+                                />) : (<input
+                                    type="text"
+                                    name="subject"
+                                    placeholder="enter subject name (like DS/IOT/DSA/MS)"
+                                    onChange={(e) => setSubject(e.target.value)}
+                                    value={subject}
+                                />)
+                            }
+
                         </div>
                         <div className="form-group">
                             <label htmlFor="date">Start Date</label>
