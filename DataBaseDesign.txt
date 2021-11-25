@@ -1,0 +1,56 @@
+User Collection :
+    - _id : ObjectId()
+    - email : String
+    - password : String (stored in hashed format)
+    - name : String
+    - rollNumber : String
+    - role : Enum ("student" / "faculty")
+    - course : String 
+    - year : Number
+    - isAdmin : Boolean
+    - department : String
+    - subject : [String]
+    - subcriptionDetails : [SubcriptionDataSchema]
+
+    Student Model :
+        - _id : ObjectId()
+        - email : String
+        - password : String (stored in hashed format)
+        - name : String
+        - rollNumber : String
+        - role : Enum ("student" / "faculty")
+        - course : String 
+        - year : Number
+        - isAdmin : Boolean
+        - subcriptionDetails : [SubcriptionDataSchema]
+    Faculty Model :
+        - _id : ObjectId()
+        - email : String
+        - password : String (stored in hashed format)
+        - name : String
+        - isAdmin : Boolean
+        - department : String
+        - subject : [String]
+        - subcriptionDetails : [SubcriptionDataSchema]
+
+SubcriptionDataSchema  Collection :
+    - endpoint : String
+    - expirationTime : String
+    - keys : {
+        p256dh : String,
+        auth : String
+    }
+
+
+Subject Collection :
+    - subjectName : String
+    - classCount : Number (default value 0)
+
+Attendance Collection :
+    - date : Date
+    - rollNumber : String
+    - isPresent : Boolean
+    - subject : String
+    - hour : String
+    ... Any Other Attribute (if required)
+

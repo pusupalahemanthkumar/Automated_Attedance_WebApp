@@ -1,0 +1,18 @@
+---------------BACKEND END POINTS -------------------
+
+MICROSERVIES:
+    Users:
+        @POST -/api/users/login  (LOGIN END POINT)                           -
+        @POST -/api/Users/register (REISTER END POINT)                       -
+    Attendance:
+        @POST -/api/attendance/add-multiple                                    (Authenticted and isFaculty) -
+        @POST -/api/attendance/add                                          (Authenticted and isFaculty) -
+        @GET -/api/attendance/subject/:subId                                (Authenticted and isFaculty) -
+        @GET -/api/attendance/student/:studId                               (Authenticted and isStudent) -
+        @DELETE -/api/attendance/delete/:rollNumber                         (Authenticted and isFaculty)
+    Subjects:
+        @UPDATE -/api/subject/classes-taken                                 (Authenticted and isFaculty)
+        @POST -/api/subjects/add                                            (Authenticted and isAdmin)
+        @DELETE -/api/subjects/delete                                       (Authenticted and isAdmin)
+    Notification:
+        @POST -/api/notifications/send
