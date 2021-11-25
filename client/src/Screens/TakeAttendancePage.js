@@ -83,48 +83,48 @@ const TakeAttendancePage = ({history}) => {
     }
     else {
         UI = (
-            <form class="login-register-form" onSubmit={addAttendanceHandler}>
-                <div class="form-group">
+            <form className="login-register-form" onSubmit={addAttendanceHandler}>
+                <div className="form-group">
                     <label for="Subject">Subject</label>
                     <input type="text" name="name" onChange={(e)=>setSubject(e.target.value)} value={subject} required placeholder="enter subject (like DS/IS/MS/IOT)" />
                 </div>
-                <div class="form-group">
+                <div className="form-group">
                     <label for="course">Course</label>
                     <input type="text" name="course" required placeholder="enter course (like CSE/ECE)" />
                 </div>
-                <div class="form-group">
+                <div className="form-group">
                     <label for="year">Year</label>
                     <input type="number" name="year" required placeholder="enter b.tech year (like 1/2/3/4)" min="1" max="4" />
                 </div>
-                <div class="form-group">
+                <div className="form-group">
                     <label for="hour">Hour</label>
                     <input type="number" name="hour" onChange={(e)=>sethour(e.target.value)} required placeholder="enter hour (like 1/2/3/4/..)" />
                 </div>
-                <div class="form-group">
+                <div className="form-group">
                     <label for="rollNumbers">RollNumbers Present</label>
                     <textarea name="rollNumbers" rows="5" required placeholder="just upload images, this field filled will be filled automatically." >
                         {[...new Set(recognitionOutput)].join(",")}
                     </textarea>
                 </div>
-                <button class="login-register-btn">Save Attendance</button>
+                <button className="login-register-btn">Save Attendance</button>
             </form>
         )
     }
     return (
         <>
             <Navbar />
-            <div class="login-register-main-container">
-                <div class="login-register-content">
-                    <div class="login-register-content-1">
+            <div className="login-register-main-container">
+                <div className="login-register-content">
+                    <div className="login-register-content-1">
                         <h1>Take Attendance</h1>
                         <p>Lorem ipsum dolor sit amet.</p>
                         <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. <a href="#">Iusto, repellendus!</a></p>
-                        <div class="images-upload-container">
+                        <div className="images-upload-container">
                             <input type="file" multiple onChange={studentImageChangeHandler} />
                         </div>
 
                     </div>
-                    <div class="login-register-content-2">
+                    <div className="login-register-content-2">
                         {added && <p className="error-message status">{`Marked Attendance Sucessfully !`}</p>}
                         {UI}
                     </div>
