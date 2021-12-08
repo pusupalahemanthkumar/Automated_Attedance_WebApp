@@ -29,7 +29,7 @@ const Navbar = () => {
         <>
             <nav className="navbar">
                 <div className="logo">
-                    <h1><span className="primary-color-1"> <i className="fas fa-rocket secondary-color-2"></i>Attendance App</span>
+                    <h1><span className="primary-color-1"> <i className="fas fa-calendar-check secondary-color-2"></i> Attendance App</span>
                     </h1>
                 </div>
                 <ul className="nav-links">
