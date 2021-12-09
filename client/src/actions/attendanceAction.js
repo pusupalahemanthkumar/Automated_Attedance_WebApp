@@ -20,7 +20,8 @@ export const getAttendance = (query) => {
             dispatch({ type: ATTENDANCE_LIST_REQUEST });
             let response;
             response = await axios.post(
-                "http://localhost:5000/api/attendance/get",
+                // "http://localhost:5000/api/attendance/get",
+                "/api/attendance/get",
                 query,
                 config
             );

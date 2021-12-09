@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
 import "react-responsive-modal/styles.css";
 import { Modal } from "react-responsive-modal";
 
@@ -42,6 +43,33 @@ const DashboardPage = ({ history }) => {
         }
     }, [userInfo, history, dispatch])
 
+    const updateAttendance = async (studData) => {
+        console.log(studData);
+        let URL;
+        if (studData.isPresent) {
+            URL = "/api/attendance/delete"
+        } else {
+            URL = "/api/attendance/add"
+        }
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                "authorization": `Bearer ${userInfo.token}`
+            },
+        };
+        const { data } = await axios.post(
+            URL,
+            studData,
+            config
+        );
+        if (userInfo.role === "student") {
+            dispatch(getAttendance({ date: formatYmd(new Date()), rollNumber: userInfo.rollNumber }))
+        } else {
+            dispatch(getAttendance({ date: formatYmd(new Date()), subject: userInfo.subject }))
+        }
+    }
+
     const submitHandler = (e) => {
         e.preventDefault();
         let query;
@@ -79,7 +107,7 @@ const DashboardPage = ({ history }) => {
     }
     else {
         UI = (
-            <AttendanceListTable data={AttendanceList} />
+            <AttendanceListTable data={AttendanceList} updateAttendance={updateAttendance} role={userInfo.role} />
         )
     }
 

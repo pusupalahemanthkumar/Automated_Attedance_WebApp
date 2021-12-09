@@ -60,7 +60,8 @@ const TakeAttendancePage = ({history}) => {
           };
         console.log(query)
         const { data } = await axios.post(
-            "http://localhost:5000/api/attendance/add-multiple",
+            // "http://localhost:5000/api/attendance/add-multiple",
+            "/api/attendance/add-multiple",
             query,
             config
         );

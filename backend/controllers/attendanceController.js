@@ -14,7 +14,7 @@ const getAttendance = asyncHandler(
 
 const attendanceStarterMultipleAdder = asyncHandler(
     async (req, res, next) => {
-        const { date, subject, rollNumbers,hour } = req.body;
+        const { date, subject, rollNumbers, hour } = req.body;
 
         const studentList = await User.find({ role: "student" }, { _id: 0, rollNumber: 1 });
         const queryInsertion = [];
@@ -23,12 +23,12 @@ const attendanceStarterMultipleAdder = asyncHandler(
                 rollNumber: studentList[i].rollNumber,
                 subject: subject,
                 date: date,
-                hour:hour,
+                hour: hour,
                 isPresent: false,
             })
         }
         await Attendance.insertMany(queryInsertion);
-        await Attendance.updateMany({ date: date, hour:hour, subject: subject, isPresent: false, rollNumber: { $in: rollNumbers } }, { isPresent: true })
+        await Attendance.updateMany({ date: date, hour: hour, subject: subject, isPresent: false, rollNumber: { $in: rollNumbers } }, { isPresent: true })
 
         res.json({
             message: "Updated Sucessfully !"
@@ -37,31 +37,44 @@ const attendanceStarterMultipleAdder = asyncHandler(
 );
 const addAttendance = asyncHandler(
     async (req, res, next) => {
-        const { rollNumber, subject, date, isPresent,hour } = req.body;
-        const data = await Attendance.find({ rollNumber: rollNumber, hour:hour ,subject: subject, date: date, isPresent: isPresent });
-
-        if (data.length == 0) {
-            const attendance = await Attendance.updateOne({
-                subject: subject,
-                date: date,
-                isPresent: false,
-                hour:hour,
-                rollNumber: rollNumber
-            }, {
-                isPresent: isPresent,
-            });
-            if (attendance) {
-                res.json({
-                    message: "Added Attendance Sucessfully!"
-                });
-            }
-        } else {
+        const { rollNumber, subject, date, isPresent, hour } = req.body;
+        const attendance = await Attendance.updateOne({
+            subject: subject,
+            date: date,
+            isPresent: isPresent,
+            hour: hour,
+            rollNumber: rollNumber
+        }, {
+            isPresent: true,
+        });
+        if (attendance) {
             res.json({
-                message: "Already Added Attendance Sucessfully!"
+                message: "Added Attendance Sucessfully!"
             });
-
         }
 
+
+    }
+)
+
+const deleteAttendance = asyncHandler(
+    async (req, res, next) => {
+        const { rollNumber, subject, date, isPresent, hour } = req.body;
+        console.log(req.body);
+        const attendance = await Attendance.updateOne({
+            subject: subject,
+            date: date,
+            isPresent: isPresent,
+            hour: hour,
+            rollNumber: rollNumber
+        }, {
+            isPresent: false,
+        });
+        if (attendance) {
+            res.json({
+                message: "deleted Attendance Sucessfully!"
+            });
+        }
     }
 )
 
@@ -115,5 +128,6 @@ export {
     getSubjectAttendance,
     attendanceStarter,
     getAttendance,
-    attendanceStarterMultipleAdder
+    attendanceStarterMultipleAdder,
+    deleteAttendance
 }
