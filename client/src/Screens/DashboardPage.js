@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import "react-responsive-modal/styles.css";
 import { Modal } from "react-responsive-modal";
+import xlsExport from 'xlsexport';
 
 import AttendanceListTable from "../components/AttendanceListTable/AttendanceListTable";
 import Navbar from '../components/Navbar/Navbar';
@@ -98,6 +99,10 @@ const DashboardPage = ({ history }) => {
         console.log(AttendanceListStore);
 
     }
+    const downloadHandler=async ()=>{
+        const xls = new xlsExport(AttendanceList,"Attendance Log");
+        xls.exportToXLS('AttendanceLogs.xls')
+    }
     let UI = null;
     if (loading && !error) {
         UI = <Spinner />;
@@ -149,7 +154,7 @@ const DashboardPage = ({ history }) => {
                 </div>
             </div>
             <div className="download-report-container">
-                <button>Downolad Report</button>
+                <button onClick={downloadHandler}>Downolad Report</button>
             </div>
             <Modal open={open} onClose={onCloseModal} center>
                 <div className="apply-filters-container">
