@@ -101,7 +101,7 @@ const DashboardPage = ({ history }) => {
     }
     const downloadHandler=async ()=>{
         const xls = new xlsExport(AttendanceList,"Attendance Log");
-        xls.exportToXLS('AttendanceLogs.xls')
+        xls.exportToXLS('AttendanceLogs.xlsx')
     }
     let UI = null;
     if (loading && !error) {
@@ -125,27 +125,27 @@ const DashboardPage = ({ history }) => {
                     <div className="dashboard-summary-item">
                         <h1><i className="fas fa-book"></i> IOT</h1>
                         <span>10/12</span>
-                        <p>Lorem, ipsum.</p>
+                        <p>Classes</p>
                     </div>
                     <div className="dashboard-summary-item">
                         <h1><i className="fas fa-book"></i> DSA</h1>
                         <span>10/12</span>
-                        <p>Lorem, ipsum.</p>
+                        <p>Classes</p>
                     </div>
                     <div className="dashboard-summary-item">
                         <h1><i className="fas fa-book"></i> BD</h1>
                         <span>10/12</span>
-                        <p>Lorem, ipsum.</p>
+                        <p>Classes</p>
                     </div>
                     <div className="dashboard-summary-item">
                         <h1><i className="fas fa-book"></i> DS</h1>
                         <span>10/12</span>
-                        <p>Lorem, ipsum.</p>
+                        <p>Classes</p>
                     </div>
                 </div>
                 <div className="dashboard-attendance-logs-container">
                     <div className="dashboard-attendance-title-filter-container">
-                        <h1>Attendance Logs</h1>
+                        <h1>Attendance Dashboard</h1>
                         <button onClick={onOpenModal} >Apply Filters</button>
                     </div>
                     <div className="dashboard-attendance-logs-table-container">

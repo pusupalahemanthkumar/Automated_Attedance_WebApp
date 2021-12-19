@@ -50,8 +50,9 @@ const RegisterPage = ({ history }) => {
                 <div className="login-register-content">
                     <div className="login-register-content-1">
                         <h1>Register</h1>
-                        <p>Lorem ipsum dolor sit amet.</p>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. <Link to="/login">Iusto, repellendus!</Link></p>
+                        <p>To Continue, register into the app</p>
+                        <p>Welcome to Automated Attendance System - Progressive Web Application! Please carefully fill the registration form with accurate information. Also, please do not leave any blank space.</p>
+                        <p>Already have an account ?<Link to="/login">Login</Link></p>
 
                     </div>
                     <div className="login-register-content-2">

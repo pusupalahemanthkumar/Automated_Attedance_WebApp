@@ -32,8 +32,8 @@ const LoginPage = ({ history }) => {
                 <div className="login-register-content login-specific">
                     <div className="login-register-content-1">
                         <h1>Login</h1>
-                        <p>Lorem ipsum dolor sit amet.</p>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. <Link to="/register">Iusto, repellendus!</Link></p>
+                        <p>Welcome Back to Attendance App</p>
+                        <p> Not a member yet ? <Link to="/register"> Register</Link></p>
 
                     </div>
                     <div className="login-register-content-2">
@@ -50,7 +50,7 @@ const LoginPage = ({ history }) => {
 
                                 )
                         }
-                       
+
                     </div>
                 </div>
             </div>

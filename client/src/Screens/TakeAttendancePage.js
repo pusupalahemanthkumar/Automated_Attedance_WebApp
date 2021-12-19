@@ -118,8 +118,7 @@ const TakeAttendancePage = ({history}) => {
                 <div className="login-register-content">
                     <div className="login-register-content-1">
                         <h1>Take Attendance</h1>
-                        <p>Lorem ipsum dolor sit amet.</p>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. <a href="#">Iusto, repellendus!</a></p>
+                        <p>Kindly upload the images or capture using camera.</p>
                         <div className="images-upload-container">
                             <input type="file" multiple onChange={studentImageChangeHandler} />
                         </div>

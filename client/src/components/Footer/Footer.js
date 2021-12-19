@@ -4,14 +4,14 @@ const Footer = () => {
     return (
         <>
             <div className="footer-container">
-                <h1 className="footer-title"> About Our Mission</h1>
+                <h1 className="footer-title"> About Us</h1>
                 <div className="footer-content-1">
-                    <p>Our mission is to provide a free, world-className education to anyone, anywhere.</p>
-                    <p>Khan Academy is a 501(c)(3) nonprofit organization. Donate or volunteer today!</p>
+                    <p>We aim to automate the traditional attendance system. </p>
+                    <p>Our approach aims to solve the issues by integrating face detection and face recognition in the process. </p>
                 </div>
                 <div className="footer-content-1">
-                    <p>Our mission is to provide a free, world-className education to anyone, anywhere.</p>
-                    <p>Khan Academy is a 501(c)(3) nonprofit organization. Donate or volunteer today!</p>
+                    <p>Our services are freely available and ensure efficiency throughout the attendance system.</p>
+                    <p>Website : https://attendance-management-pwa.herokuapp.com/ </p>
                 </div>
             </div>
             <footer className="footer-copyright">
