@@ -35,10 +35,10 @@ const TakeAttendancePage = ({history}) => {
 
     const studentImageChangeHandler = async (e) => {
         setStatus("Processing");
-        console.log("--------Started Face Recognition Process !----------");
+        console.log("----------------- Started Face Recognition Process ---------------------");
         const labeledFaceDescriptors = await loadLabeledImages()
         const faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, 0.6);
-        console.log("----------Trained Model Loaded------------");
+        console.log("----------------- Trained Model Loaded ----------------------------------");
 
         rollNumbers = await faceRecogintionOutput(e.target.files, faceMatcher)
         await setRecognitionOutput(rollNumbers);
