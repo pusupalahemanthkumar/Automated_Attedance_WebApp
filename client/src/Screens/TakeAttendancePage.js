@@ -10,13 +10,13 @@ import { loadLabeledImages, loadFaceApiModels, faceRecogintionOutput } from "../
 
 const formatYmd = date => date.toISOString().slice(0, 10);
 
-const TakeAttendancePage = ({history}) => {
+const TakeAttendancePage = ({ history }) => {
     let rollNumbers = [];
     const [recognitionOutput, setRecognitionOutput] = useState([]);
     const [status, setStatus] = useState("Initial");
     const [subject, setSubject] = useState("");
     const [hour, sethour] = useState("");
-    const [added,setAdded]=useState(false);
+    const [added, setAdded] = useState(false);
 
 
 
@@ -24,7 +24,7 @@ const TakeAttendancePage = ({history}) => {
     const { userInfo } = userLogin;
 
     useEffect(() => {
-        if(userInfo && userInfo.role!=="faculty"){
+        if (userInfo && userInfo.role !== "faculty") {
             history.replace("/");
         }
         if (userInfo) {
@@ -50,14 +50,14 @@ const TakeAttendancePage = ({history}) => {
             subject: subject,
             rollNumbers: [...new Set(recognitionOutput)],
             date: formatYmd(new Date()),
-            hour:hour,
+            hour: hour,
         }
         const config = {
             headers: {
-              "Content-Type": "application/json",
-              "authorization":`Bearer ${userInfo.token}`
+                "Content-Type": "application/json",
+                "authorization": `Bearer ${userInfo.token}`
             },
-          };
+        };
         console.log(query)
         const { data } = await axios.post(
             // "http://localhost:5000/api/attendance/add-multiple",
@@ -87,7 +87,7 @@ const TakeAttendancePage = ({history}) => {
             <form className="login-register-form" onSubmit={addAttendanceHandler}>
                 <div className="form-group">
                     <label for="Subject">Subject</label>
-                    <input type="text" name="name" onChange={(e)=>setSubject(e.target.value)} value={subject} required placeholder="enter subject (like DS/IS/MS/IOT)" />
+                    <input type="text" name="name" onChange={(e) => setSubject(e.target.value)} value={subject} required placeholder="enter subject (like DS/IS/MS/IOT)" />
                 </div>
                 <div className="form-group">
                     <label for="course">Course</label>
@@ -99,12 +99,14 @@ const TakeAttendancePage = ({history}) => {
                 </div>
                 <div className="form-group">
                     <label for="hour">Hour</label>
-                    <input type="number" name="hour" onChange={(e)=>sethour(e.target.value)} required placeholder="enter hour (like 1/2/3/4/..)" />
+                    <input type="number" name="hour" onChange={(e) => sethour(e.target.value)} required placeholder="enter hour (like 1/2/3/4/..)" />
                 </div>
                 <div className="form-group">
                     <label for="rollNumbers">RollNumbers Present</label>
-                    <textarea name="rollNumbers" rows="5" required placeholder="just upload images, this field filled will be filled automatically." >
-                        {[...new Set(recognitionOutput)].join(",")}
+                    <textarea name="rollNumbers" rows="5" required placeholder="just upload images, this field filled will be filled automatically."
+                        defaultValue={[...new Set(recognitionOutput)].join(",")}
+                    >
+
                     </textarea>
                 </div>
                 <button className="login-register-btn">Save Attendance</button>
