@@ -78,55 +78,8 @@ const deleteAttendance = asyncHandler(
     }
 )
 
-// Can be Removed
-const getSubjectAttendance = asyncHandler(
-    async (req, res, next) => {
-        const subId = req.params.subId;
-        const attendanceData = await Attendance.find({ subject: subId });
-        res.json({
-            message: "Successfully fetched Data!",
-            attendanceData: attendanceData,
-        });
-    }
-)
-const getStudentAttendance = asyncHandler(
-    async (req, res, next) => {
-        const studId = req.params.studId;
-        const attendanceData = await Attendance.find({ rollNumber: studId });
-        res.json({
-            message: "Successfully fetched Data!",
-            attendanceData: attendanceData,
-        });
-    }
-)
-
-const attendanceStarter = asyncHandler(
-    async (req, res, next) => {
-        const studentList = await User.find({ role: "student" }, { _id: 0, rollNumber: 1 });
-        const formatYmd = date => date.toISOString().slice(0, 10);
-
-        studentList.forEach(async (stud) => {
-            await Attendance.create({
-                subject: req.body.subject,
-                date: formatYmd(new Date()),
-                isPresent: false,
-                rollNumber: stud.rollNumber
-            });
-
-        })
-        res.json({
-            message: "Successfully Initiated Attendance Process !",
-            studentList: studentList,
-        })
-
-    }
-)
-
 export {
     addAttendance,
-    getStudentAttendance,
-    getSubjectAttendance,
-    attendanceStarter,
     getAttendance,
     attendanceStarterMultipleAdder,
     deleteAttendance

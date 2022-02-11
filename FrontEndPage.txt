@@ -1,0 +1,7 @@
+--------------------------FRONTEND PAGES AND FEATURES--------------------------
+PAGES:
+    -LOGIN PAGE
+    -Register PAGE
+    -Student DashBoard (View Only)
+    -Faculty DashBoard (Editable DashBoard)
+    -Admin DashBoard (Editable DashBoard)

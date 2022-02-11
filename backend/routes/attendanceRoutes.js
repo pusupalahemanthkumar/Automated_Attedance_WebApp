@@ -8,23 +8,15 @@ import { protect } from "../middlewares/authMiddleware.js"
 
 const router = express.Router();
 
-// @POST -/api/attendance/starter
-// router.post("/starter", protect, isFaculty, attendanceStarter)
-
 // @POST -/api/attendance/add 
 router.post("/add", protect, isFaculty, addAttendance);
-
-// @POST -/api/attendance/delte
-router.post("/delete", protect, isFaculty, deleteAttendance);
 
 // @POST -/api/attendance/add-multiple
 router.post("/add-multiple", protect, isFaculty, attendanceStarterMultipleAdder);
 
-// @GET -/api/attendance/subject/:subId
-// router.get("/subject/:subId", protect, isFaculty, getSubjectAttendance);
 
-// @GET -/api/attendance/student/:studId
-// router.get("/student/:studId", protect, getStudentAttendance);
+// @POST -/api/attendance/delete
+router.post("/delete", protect, isFaculty, deleteAttendance);
 
 // @POST -/api/attendance/get/
 router.post("/get", protect, getAttendance);
