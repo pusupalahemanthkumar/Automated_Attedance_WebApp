@@ -1,7 +1,13 @@
 // Importing Required Files And Packages Here
 import express from "express";
 
-import { getStudentAttendance, deleteAttendance,attendanceStarterMultipleAdder, getSubjectAttendance, addAttendance, attendanceStarter, getAttendance } from "../controllers/attendanceController.js"
+import {
+    addAttendance,
+    getAttendance,
+    attendanceStarterMultipleAdder,
+    deleteAttendance,
+    getlowAttendanceStudentDetails
+} from "../controllers/attendanceController.js"
 import { isFaculty } from "../middlewares/facultyMiddleware.js"
 import { protect } from "../middlewares/authMiddleware.js"
 
@@ -20,5 +26,8 @@ router.post("/delete", protect, isFaculty, deleteAttendance);
 
 // @POST -/api/attendance/get/
 router.post("/get", protect, getAttendance);
+
+// @GET -/attendance/attendance/low/
+router.get("/low",getlowAttendanceStudentDetails);
 
 export default router;
