@@ -12,7 +12,8 @@
         @POST -/api/attendance/add-multiple                                  
         @POST -/api/attendance/delete/:rollNumber
         @POST -/api/attendance/get/      
-        @GET -/api/attendance/low/                   
+        @GET -/api/attendance/low/    
+        @GET -/api/attendance/all/               
     Subjects:
         @UPDATE -/api/subject/classes-taken                                
         @POST -/api/subjects/add                                           

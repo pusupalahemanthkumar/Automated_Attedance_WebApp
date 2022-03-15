@@ -94,6 +94,59 @@ const deleteAttendance = asyncHandler(async (req, res, next) => {
   }
 });
 
+const getAllStudentAttendanceDetails = asyncHandler(async (req, res, next) => {
+  const t = await Subject.aggregate([
+    {
+      $group: {
+        _id: null,
+        total: {
+          $sum: "$classCount",
+        },
+      },
+    },
+  ]);
+  console.log(t);
+  const totalAttendance = t[0].total;
+
+  const data = await Attendance.aggregate([
+    {
+      $group: {
+        _id: "$rollNumber",
+        presentCount: {
+          $sum: "$isPresent",
+        },
+      },
+    },
+
+    {
+      $lookup: {
+        from: "users",
+        localField: "_id",
+        foreignField: "rollNumber",
+        as: "studentDetails",
+      },
+    },
+    {
+      $addFields: {
+        totalAttendance: totalAttendance,
+        percentage: {
+          $divide: ["$presentCount", totalAttendance],
+        },
+      },
+    },
+    {
+      $project: {
+        studentDetails: {
+          password: 0,
+          subcriptionDetails: 0,
+        },
+      },
+    },
+  ]);
+  console.log(data.length);
+  res.json(data);
+});
+
 const getlowAttendanceStudentDetails = asyncHandler(async (req, res, next) => {
   const t = await Subject.aggregate([
     {
@@ -154,4 +207,5 @@ export {
   attendanceStarterMultipleAdder,
   deleteAttendance,
   getlowAttendanceStudentDetails,
+  getAllStudentAttendanceDetails
 };

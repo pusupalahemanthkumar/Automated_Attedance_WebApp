@@ -6,7 +6,8 @@ import {
     getAttendance,
     attendanceStarterMultipleAdder,
     deleteAttendance,
-    getlowAttendanceStudentDetails
+    getlowAttendanceStudentDetails,
+    getAllStudentAttendanceDetails
 } from "../controllers/attendanceController.js"
 import { isFaculty } from "../middlewares/facultyMiddleware.js"
 import { protect } from "../middlewares/authMiddleware.js"
@@ -27,7 +28,10 @@ router.post("/delete", protect, isFaculty, deleteAttendance);
 // @POST -/api/attendance/get/
 router.post("/get", protect, getAttendance);
 
-// @GET -/attendance/attendance/low/
+// @GET -/api/attendance/low/
 router.get("/low",getlowAttendanceStudentDetails);
+
+// @GET -/api/attendance/all/
+router.get("/all",getAllStudentAttendanceDetails);
 
 export default router;
