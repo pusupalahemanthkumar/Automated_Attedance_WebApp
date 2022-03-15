@@ -9,11 +9,10 @@ const attendanceSchema = mongoose.Schema({
     rollNumber: {
         type: String,
         required: true,
-        ref: 'User'
     },
     isPresent: {
-        type: Number,
-        default: 0,
+        type: Boolean,
+        default: false,
         required: true,
     },
     subject: {
