@@ -135,7 +135,7 @@ const getlowAttendanceStudentDetails = asyncHandler(
 
             ]
         );
-
+        console.log(data.length);
         res.json(data);
     }
 
