@@ -48,9 +48,9 @@ const DashboardPage = ({ history }) => {
         console.log(studData);
         let URL;
         if (studData.isPresent) {
-            URL = "/api/attendance/delete";
+            URL = "/api/attendance/delete"
         } else {
-            URL = "/api/attendance/add";
+            URL = "/api/attendance/add"
         }
 
         const config = {
