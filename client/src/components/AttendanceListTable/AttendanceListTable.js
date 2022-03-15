@@ -1,6 +1,4 @@
-import React, { useEffect } from 'react'
-import axios from "axios";
-import { useSelector } from "react-redux";
+import React from 'react'
 
 const formatYmd = date => date.toISOString().slice(0, 10);
 const AttendanceListTable = ({ data, updateAttendance, role }) => {
@@ -27,7 +25,7 @@ const AttendanceListTable = ({ data, updateAttendance, role }) => {
                                     <td>{row.subject}</td>
                                     {/* <td>{row.hour}</td> */}
                                     {
-                                        role == "student" ?
+                                        role ==="student" ?
                                             (<td >{row.isPresent ? "Present " : "Absent "} </td>) :
                                             (<td onClick={() => updateAttendance(row)}>{row.isPresent ? "Present " : "Absent "}
                                                 <i className="fas fa-pen-square primary-color"></i></td>)
