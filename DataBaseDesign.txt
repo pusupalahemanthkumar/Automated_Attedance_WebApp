@@ -11,6 +11,8 @@ User Collection :
     - department : String
     - subject : [String]
     - subcriptionDetails : [SubcriptionDataSchema]
+    - studentStatus: Enum ('Detained' / 'Regular' )
+    - scholarshipStatus : Enum ('Declined', 'Granted')
 
     Student Model :
         - _id : ObjectId()
@@ -23,6 +25,9 @@ User Collection :
         - year : Number
         - isAdmin : Boolean
         - subcriptionDetails : [SubcriptionDataSchema]
+        - studentStatus: Enum ('Detained' / 'Regular' )
+        - scholarshipStatus : Enum ('Declined', 'Granted')
+        
     Faculty Model :
         - _id : ObjectId()
         - email : String
@@ -49,7 +54,7 @@ Subject Collection :
 Attendance Collection :
     - date : Date
     - rollNumber : String
-    - isPresent : Boolean
+    - isPresent : Number (0 or 1)
     - subject : String
     - hour : String
     ... Any Other Attribute (if required)

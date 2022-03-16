@@ -53,7 +53,13 @@ const userSchema = mongoose.Schema({
     subject: {
         type: String,
     },
-    subcriptionDetails: [SubcriptionDataSchema]
+    subcriptionDetails: [SubcriptionDataSchema],
+    studentStatus:{
+        type:String,
+    },
+    scholarshipStatus:{
+        type:String,
+    }
 
 }, {
     timestamps: true
