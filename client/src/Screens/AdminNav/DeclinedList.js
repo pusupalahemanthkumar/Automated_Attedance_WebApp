@@ -54,16 +54,6 @@ const DeclinedList = () => {
         </tbody>
       </table>
     );
-    UI = scholarshipDeclinedList.map((row) => {
-      return (
-        <tr key={row._id}>
-          <td>{row.studentDetails[0].rollNumber}</td>
-          <td>{row.studentDetails[0].studentStatus}</td>
-          <td>{row.studentDetails[0].scholarshipStatus}</td>
-          <td>{row.percentage * 100}</td>
-        </tr>
-      );
-    });
   }
 
   return <div className="admin-content-container">{UI}</div>;
