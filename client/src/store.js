@@ -27,6 +27,9 @@ const initialState = {
   },
   scholarshipListData: {
     scholarshipList: [],
+    lowAttendanceList:[],
+    scholarshipGrantedList:[],
+    scholarshipDeclinedList:[]
   },
 };
 

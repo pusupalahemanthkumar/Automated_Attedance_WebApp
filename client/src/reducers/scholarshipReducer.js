@@ -11,9 +11,26 @@ export const getScholarshipData = (state = {}, action) => {
         loading: true,
       };
     case SCHOLARSHIP_LIST_SUCCESS:
+      const all = action.payload;
+      const low = action.payload.filter(
+        (item) => item.studentDetails[0].studentStatus === "Detained"
+      );
+      const granted = action.payload.filter(
+        (item) => item.studentDetails[0].scholarshipStatus === "Granted"
+      );
+      const declined = action.payload.filter(
+        (item) => item.studentDetails[0].scholarshipStatus === "Declined"
+      );
+      console.log(all);
+      console.log(low);
+      console.log(granted);
+      console.log(declined);
       return {
         loading: false,
-        scholarshipList: action.payload,
+        scholarshipList: all,
+        lowAttendanceList: low,
+        scholarshipGrantedList: granted,
+        scholarshipDeclinedList: declined,
       };
     case SCHOLARSHIP_LIST_FAIL:
       return {
