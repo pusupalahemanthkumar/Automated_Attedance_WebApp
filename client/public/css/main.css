@@ -403,3 +403,34 @@ body{
 .status{
     color:#00ADCE !important;
 }
+
+/* Admin Page Sytling */
+.admin-container{
+    padding: 3rem 4rem;
+    min-height: 700px;
+}
+.admin-nav{
+    display: flex;
+    margin-bottom: 1rem;
+}
+.admin-nav a{
+    margin-right: 1rem;
+    font-size: 1.1rem;
+    text-decoration: none;
+    color:#0A2A66;
+}
+.admin-nav a:hover,
+.admin-nav-active
+
+{
+    border-bottom: 3px solid #0A2A66;
+}
+.admin-content-container{
+    display: flex;
+    flex-direction: column;
+}
+.admin-content-item{
+    padding: 1rem 1.5rem;
+    margin-bottom: 1rem;
+}
+
