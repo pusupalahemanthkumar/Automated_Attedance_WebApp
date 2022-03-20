@@ -2,8 +2,14 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getScholarshipDetails } from "../../actions/scholarshipAction";
 import Spinner from "../../components/Spinner/Spinner";
+import {
+  updateScholarshipStatusHandler,
+  updateStudentStatusHandler,
+} from "./update_api";
 
 const AllList = () => {
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
   const scholarshipListStore = useSelector(
     (state) => state.scholarshipListData
   );
@@ -14,6 +20,24 @@ const AllList = () => {
   useEffect(() => {
     dispatch(getScholarshipDetails({}));
   }, []);
+
+  const studentStatusClickHandler = async (rollNumber, studentStatus) => {
+    await updateStudentStatusHandler(rollNumber, studentStatus, userInfo.token);
+    dispatch(getScholarshipDetails({}));
+  };
+
+  const scholarshipStatusClickHandler = async (
+    rollNumber,
+    scholarshipStatus
+  ) => {
+   const d= await updateScholarshipStatusHandler(
+      rollNumber,
+      scholarshipStatus,
+      userInfo.token
+    );
+    console.log(d);
+    dispatch(getScholarshipDetails({}));
+  };
 
   let UI = null;
   if (loading && !error) {
@@ -45,8 +69,30 @@ const AllList = () => {
             return (
               <tr key={row._id}>
                 <td>{row.studentDetails[0].rollNumber}</td>
-                <td>{row.studentDetails[0].studentStatus}</td>
-                <td>{row.studentDetails[0].scholarshipStatus}</td>
+                <td>
+                  {row.studentDetails[0].studentStatus}{" "}
+                  <i
+                    className="fas fa-pen-square primary-color"
+                    onClick={() =>
+                      studentStatusClickHandler(
+                        row._id,
+                        row.studentDetails[0].studentStatus
+                      )
+                    }
+                  ></i>
+                </td>
+                <td>
+                  {row.studentDetails[0].scholarshipStatus}{" "}
+                  <i
+                    className="fas fa-pen-square primary-color"
+                    onClick={() =>
+                      scholarshipStatusClickHandler(
+                        row._id,
+                        row.studentDetails[0].scholarshipStatus
+                      )
+                    }
+                  ></i>
+                </td>
                 <td>{row.percentage * 100}</td>
               </tr>
             );
@@ -56,11 +102,7 @@ const AllList = () => {
     );
   }
 
-  return (
-    <div className="admin-content-container">
-      {UI}
-    </div>
-  );
+  return <div className="admin-content-container">{UI}</div>;
 };
 
 export default AllList;

@@ -2,8 +2,14 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getScholarshipDetails } from "../../actions/scholarshipAction";
 import Spinner from "../../components/Spinner/Spinner";
+import {
+  updateScholarshipStatusHandler,
+  updateStudentStatusHandler,
+} from "./update_api";
 
 const DeclinedList = () => {
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
   const scholarshipListStore = useSelector(
     (state) => state.scholarshipListData
   );
@@ -14,6 +20,23 @@ const DeclinedList = () => {
   useEffect(() => {
     dispatch(getScholarshipDetails({}));
   }, []);
+
+  const studentStatusClickHandler = async (rollNumber, studentStatus) => {
+    await updateStudentStatusHandler(rollNumber, studentStatus, userInfo.token);
+    dispatch(getScholarshipDetails({}));
+  };
+
+  const scholarshipStatusClickHandler = async (
+    rollNumber,
+    scholarshipStatus
+  ) => {
+    await updateScholarshipStatusHandler(
+      rollNumber,
+      scholarshipStatus,
+      userInfo.token
+    );
+    dispatch(getScholarshipDetails({}));
+  };
 
   let UI = null;
   if (loading && !error) {
@@ -45,8 +68,30 @@ const DeclinedList = () => {
             return (
               <tr key={row._id}>
                 <td>{row.studentDetails[0].rollNumber}</td>
-                <td>{row.studentDetails[0].studentStatus}</td>
-                <td>{row.studentDetails[0].scholarshipStatus}</td>
+                <td>
+                  {row.studentDetails[0].studentStatus}{" "}
+                  <i
+                    className="fas fa-pen-square primary-color"
+                    onClick={() =>
+                      studentStatusClickHandler(
+                        row._id,
+                        row.studentDetails[0].studentStatus
+                      )
+                    }
+                  ></i>
+                </td>
+                <td>
+                  {row.studentDetails[0].scholarshipStatus}{" "}
+                  <i
+                    className="fas fa-pen-square primary-color"
+                    onClick={() =>
+                      scholarshipStatusClickHandler(
+                        row._id,
+                        row.studentDetails[0].scholarshipStatus
+                      )
+                    }
+                  ></i>
+                </td>
                 <td>{row.percentage * 100}</td>
               </tr>
             );

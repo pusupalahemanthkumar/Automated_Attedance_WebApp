@@ -1,4 +1,4 @@
-import React, { useEffect} from "react";
+import React, { useEffect } from "react";
 import { Route, NavLink, Switch } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Footer from "../components/Footer/Footer";

@@ -12,9 +12,7 @@ export const getScholarshipData = (state = {}, action) => {
       };
     case SCHOLARSHIP_LIST_SUCCESS:
       const all = action.payload;
-      const low = action.payload.filter(
-        (item) => item.studentDetails[0].studentStatus === "Detained"
-      );
+      const low = action.payload.filter((item) => item.percentage <= 0.60);
       const granted = action.payload.filter(
         (item) => item.studentDetails[0].scholarshipStatus === "Granted"
       );
