@@ -21,7 +21,7 @@ export const getScholarshipDetails = (query) => {
       dispatch({ type: SCHOLARSHIP_LIST_REQUEST });
       let response;
       response = await axios.get(
-        "http://localhost:5000/api/scholarship/details",
+        "/api/scholarship/details",
         config
       );
       dispatch({

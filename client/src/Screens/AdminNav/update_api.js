@@ -23,7 +23,7 @@ export const updateStudentStatusHandler = async (
     },
   };
   const response = await axios.post(
-    "http://localhost:5000/api/scholarship/student-status",
+    "/api/scholarship/student-status",
     data,
     config
   );
