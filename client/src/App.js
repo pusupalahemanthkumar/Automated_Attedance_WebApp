@@ -24,7 +24,7 @@ const App = () => {
         }else if(command==="dashboard"){
           history.push("/dashboard");
         }else if(command==="admin"){
-          history.push("/admin");
+          history.push("/admin/all");
         }else if(command==="take attendance"){
           history.push("/take-attendance");
         }
