@@ -114,4 +114,15 @@
         padding: 4rem 1rem;
         
     }
+    /* Admin Dashboard */
+    .admin-container{
+        padding: 3rem 1rem;
+        min-height: 700px;
+    }
+   .attendance-table {
+       width:400px;
+       height: 600px;
+       overflow: auto;
+        
+    }
 }
