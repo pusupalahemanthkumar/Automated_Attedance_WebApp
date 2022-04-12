@@ -27,6 +27,10 @@ const App = () => {
           history.push("/admin/all");
         }else if(command==="take attendance"){
           history.push("/take-attendance");
+        }else if(command==="login"){
+          history.push("/login");
+        }else if(command==="register"){
+          history.push("/register");
         }
       },
     });
