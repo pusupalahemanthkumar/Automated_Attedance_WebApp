@@ -13,7 +13,8 @@ const AdminPage = ({ history }) => {
   const { userInfo } = userLogin;
 
   useEffect(() => {
-    if (!userInfo && userInfo.role === "admin") {
+    console.log(userInfo);
+    if (!userInfo || !userInfo.isAdmin) {
       history.replace("/");
       return;
     }
