@@ -90,11 +90,22 @@ const Navbar = () => {
             <Link to="/take-attendance">Take Attendance</Link>
           </li>
         ) : null}
+         {userInfo && userInfo.isAdmin && (
+            <li>
+              <Link to="/admin/all">Admin</Link>
+            </li>
+          )}
+          {userInfo &&
+            (userInfo.role === "student" || userInfo.role === "faculty") && (
+              <li>
+                <Link to="/attendance">Dashboard</Link>
+              </li>
+            )}
         {userInfo && (
           <>
-            <li>
+            {/* <li>
               <Link to="/attendance">Dashboard</Link>
-            </li>
+            </li> */}
             <li>
               <Link to="" onClick={logoutHandler}>
                 logout
