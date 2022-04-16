@@ -116,11 +116,16 @@
     }
     /* Admin Dashboard */
     .admin-container{
-        padding: 3rem 1rem;
+        padding: 3rem 0.5rem;
         min-height: 700px;
     }
+    .admin-nav{
+        display: flex;
+        margin-bottom: 1rem;
+        padding-left: 1rem;
+    }
     .admin-container .attendance-table {
-       width:400px;
+       width:370px;
        height: 600px;
        overflow: auto;
         

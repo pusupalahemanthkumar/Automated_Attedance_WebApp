@@ -61,7 +61,7 @@ const AllList = () => {
             <th>RollNumber</th>
             <th>Student Status</th>
             <th>Scholarship Status</th>
-            <th>Attendance</th>
+            {/* <th>Attendance</th> */}
           </tr>
         </thead>
         <tbody>
@@ -71,6 +71,7 @@ const AllList = () => {
                 <td>{row.studentDetails[0].rollNumber}</td>
                 <td>
                   {row.studentDetails[0].studentStatus}{" "}
+                  {row.percentage * 100}
                   <i
                     className="fas fa-pen-square primary-color"
                     onClick={() =>
@@ -93,7 +94,7 @@ const AllList = () => {
                     }
                   ></i>
                 </td>
-                <td>{row.percentage * 100}</td>
+                {/* <td>{row.percentage * 100}</td> */}
               </tr>
             );
           })}
