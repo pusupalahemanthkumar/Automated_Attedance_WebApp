@@ -9,7 +9,7 @@ import TakeAttendancePage from "./Screens/TakeAttendancePage";
 import DashboardPage from "./Screens/DashboardPage";
 import AdminPage from "./Screens/AdminPage";
 import { useDispatch} from "react-redux";
-import { logout } from "../../actions/userActions";
+import { logout } from "./actions/userActions";
 
 const ALAN_KEY =
   "032cb63c95e4a228e2cefa5e29d42e1b2e956eca572e1d8b807a3e2338fdd0dc/stage";
